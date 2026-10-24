@@ -1,6 +1,6 @@
 # AgentShield
 
-**a security router for third-party AI agents: Strands Decider 2B gatekeeps every step in one fast pass and spends deeper checks only where they change the outcome.**
+**A security router for third-party AI agents: Strands Decider 2B gatekeeps every step in one fast pass and spends deeper checks only where they change the outcome.**
 
 An agent on AWS that hands one decision to **Strands Decider 2B** and the conversation to **Amazon Bedrock**. Decision pattern: `#tool-selection`. Tags: `#strands-decider-2b` `#tool-selection`.
 
@@ -116,7 +116,6 @@ Every Amazon Bedrock model id is set in `.env` (`BEDROCK_MODEL_ID`, and `BEDROCK
 
 The pattern lives in [`agent/decision.py`](agent/decision.py), labelled `REUSABLE DECISION PATTERN`. It contains the typed questions and their options, the wiring that puts the decision in the agent's path, and a note on how to reuse it:
 
-```text
 REUSABLE DECISION PATTERN: Decider-first security gatekeeper and investigation router  (#tool-selection)
 
 What it does
@@ -184,7 +183,6 @@ How to reuse it
     plan, run your own deterministic resolver after each result, and call `reroute` only when the
     resolver says the case is still open. Tune LOW_CONF / ALLOW_MIN_CONF / SEVERE_P / NEED_P on a
     labelled tune split (`./kit bench --split tune`), report a held-out split.
-```
 
 Typed questions:
 
