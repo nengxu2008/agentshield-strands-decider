@@ -141,7 +141,7 @@ Splitting one routing judgement into separate questions (severity, missing facts
 
 ## Footer
 
-Repo: https://github.com/nengxu2008/agentshield-strands-decider | Video: (paste the public YouTube link) | Strands Decider: https://github.com/strands-labs/strands-decider | Tags: #strands-decider-2b #tool-selection
+Repo: https://github.com/nengxu2008/agentshield-strands-decider | Video: https://youtu.be/tGztQFYy4Eg | Strands Decider: https://github.com/strands-labs/strands-decider | Tags: #strands-decider-2b #tool-selection
 
 The reusable library in `decider_kit/`, the demo UI and the tooling come from the kit; AgentShield in `agent/` is my own.
 
