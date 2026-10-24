@@ -2,7 +2,7 @@
 
 Submit before 23 October 2026, 11:59 p.m. PT on the hackathon page.
 
-- Repository: <./kit publish ... fills this in>
+- Repository: https://github.com/nengxu2008/agentshield-strands-decider
 - Video: <paste the public YouTube/Vimeo link after uploading submission/video/demo.mp4>
 - Article: <paste the AWS Builder Center link after publishing submission/article/>
 - Tags: #strands-decider-2b #tool-selection
