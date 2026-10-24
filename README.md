@@ -60,8 +60,6 @@ An internal code review of v0.5 raised seven blocking findings. Some have code c
 - **PolicyEngine interface (B6):** the replaceable interface (for a future OPA engine) is not yet complete or fully checked. Being fixed.
 - **Coverage report (B7):** enforcement coverage (what each vendor exposes) is not yet reported separately from routing accuracy. Not fixed.
 
-## Measured
-
 <!-- agentshield-bench:start -->
 ## AgentShield routing benchmark: test split (16 scenarios)
 
@@ -112,105 +110,70 @@ Every Amazon Bedrock model id is set in `.env` (`BEDROCK_MODEL_ID`, and `BEDROCK
 
 ![Architecture](submission/article/img/architecture.png)
 
-## Reusable decision pattern: Decider-first security gatekeeper and investigation router  (#tool-selection)
+## Reusable decision pattern: Decider-first security gatekeeper and investigation router (#tool-selection)
 
-The pattern lives in [`agent/decision.py`](agent/decision.py), labelled `REUSABLE DECISION PATTERN`. It contains the typed questions and their options, the wiring that puts the decision in the agent's path, and a note on how to reuse it:
+The implementation is labelled `REUSABLE DECISION PATTERN` in [`agent/decision.py`](agent/decision.py). Strands Decider 2B selects the next security step from a policy-filtered catalog; deterministic code validates the plan, resolves investigation results and enforces the outcome.
 
-REUSABLE DECISION PATTERN: Decider-first security gatekeeper and investigation router  (#tool-selection)
+### What the Decider answers
 
-What it does
-    Strands Decider 2B is the first-pass gatekeeper on every security event that survives the
-    mandatory deterministic checks (hard denies stay final). In ONE batched call (4 typed
-    questions about one shared state, so the state is encoded once) it:
-    - lets an evidently safe, fully verified step take the fast path (subject to final policy
-      validation), and filters out an evidently risky step for a fast block;
-    - otherwise judges two separate axes: is information missing that a trusted lookup can settle
-      (and which lookup), and is the meaning serious or subtle enough for a stronger semantic
-      analyzer (and which one); a case can need both, in either order;
-    - rates how serious the harm would be (a calibrated distribution, not a single score).
-    Code turns the distributions into a plan of at most two investigation steps. A deterministic
-    resolver runs after every result; conclusive results go straight to policy enforcement, and
-    the Decider is asked again (3 questions) only when the case is still open and an eligible,
-    unused step remains. It never generates anything: it picks from allowlisted options, and the
-    code never executes a pick that the policy engine did not list as eligible.
+The first pass asks **four typed questions about one shared state in one batched call**: next step, risk severity, evidence tool and analyzer. A re-route asks three questions, omitting severity. Missing information and semantic complexity are separate signals: a case can need a trusted lookup, a semantic analyzer, both or neither.
 
-Typed questions and options (QUESTIONS below, version QUESTION_SET_VERSION)
-    next_step        choice  ALLOW_IF_AUTHORIZED | BLOCK | FETCH_EVIDENCE | ESCALATE_SEMANTIC | REQUIRE_APPROVAL
-    next_step_audit  choice  RECORD_ONLY | AUDIT_ALERT | CREATE_REVIEW_CASE | FETCH_EVIDENCE | ESCALATE_SEMANTIC
-                             (audit-only events can never be allowed or blocked: they already happened)
-    risk_severity    score   low < moderate < high < critical (first pass only)
-    evidence_tool    choice  CHECK_IAM_PERMISSION | GET_RESOURCE_LABEL | VERIFY_RECIPIENT | GET_PROVENANCE | none
-    analyzer         choice  SEMANTIC_DLP | PROMPT_INJECTION_FORENSICS | SENSITIVE_DERIVATION_REVIEW | none
-    First pass: next_step (or next_step_audit), risk_severity, evidence_tool, analyzer (4 questions,
-    the hosted API's limit). Re-route: next step, evidence_tool, analyzer (3 questions).
+| Question | Type | Options |
+|---|---|---|
+| `next_step` (inline) | Choice | `ALLOW_IF_AUTHORIZED`, `BLOCK`, `FETCH_EVIDENCE`, `ESCALATE_SEMANTIC`, `REQUIRE_APPROVAL` |
+| `next_step_audit` (replaces `next_step` for audit-only events) | Choice | `RECORD_ONLY`, `AUDIT_ALERT`, `CREATE_REVIEW_CASE`, `FETCH_EVIDENCE`, `ESCALATE_SEMANTIC` |
+| `risk_severity` (first pass only) | Ordered score | `low` < `moderate` < `high` < `critical` |
+| `evidence_tool` | Choice | `CHECK_IAM_PERMISSION`, `GET_RESOURCE_LABEL`, `VERIFY_RECIPIENT`, `GET_PROVENANCE`, `none` |
+| `analyzer` | Choice | `SEMANTIC_DLP`, `PROMPT_INJECTION_FORENSICS`, `SENSITIVE_DERIVATION_REVIEW`, `none` |
 
-Wiring (where it sits in the agent's path)
-    agent/shield/router.py, for every event:
-      adapter verify -> trusted context -> TIER 0 hard rules (no model) -> policy.eligible()
-      -> DeciderGatekeeper.first_pass(view, eligibility) -> policy.validate(plan)
-      -> evidence tools / analyzers -> resolver after each result
-      -> (only if still open) DeciderGatekeeper.reroute(...) -> policy.finalize -> adapter.enforce
-    The chat agent (agent/agent.py) runs this pipeline before its LLM speaks; the LLM only
-    explains the outcome and can never choose a security action.
+The `none` options mean no extra work is needed on that axis. Audit-only events have already happened, so their options never include allow or block. Full question wording and option descriptions live in [`QUESTIONS` and the option catalogs](agent/decision.py).
 
-    The code decides (plan_from_answers), using the axes separately:
-    1. Each choice is masked to the options the policy engine marked eligible and renormalised
-       (raw and masked distributions are both recorded; an ineligible raw pick is a veto).
-    2. Fast allow only if: masked confidence >= ALLOW_MIN_CONF, P(high or critical) < SEVERE_P,
-       P(a lookup is needed) < NEED_P and P(an analyzer is needed) < NEED_P. Otherwise the allow
-       is demoted and handled like low confidence.
-    3. BLOCK / REQUIRE_APPROVAL / audit outcomes are terminal when confidence >= LOW_CONF.
-    4. FETCH_EVIDENCE runs the best eligible lookup, then queues the best analyzer when
-       P(analyzer needed) >= NEED_P; ESCALATE_SEMANTIC is the mirror image.
-    5. Low confidence (masked confidence < LOW_CONF, or a demoted allow): a bounded further check
-       when one is eligible: the best eligible lookup, plus the analyzer when the analysis or the
-       severity axis says so; with no lookup left, the best eligible analyzer; if nothing is
-       eligible, fall back to BLOCK (inline) or CREATE_REVIEW_CASE (audit-only). Recorded as
-       `low_confidence` and reported as a rate. The record keeps the top eligible `pick` and its
-       probability (`confidence`) next to the `verdict` the code acted on.
-    6. Convergence guard: a lookup or analyzer already run for the event is never run again
-       (`repeat_suppressed`), at most MAX_CALLS_PER_EVENT Decider calls per event, and a re-route
-       that adds no new eligible step ends with the safe fallback.
-    One record per Decider call goes to DeciderGatekeeper.log (probabilities in 0..1, `verdict`,
-    `decider_ms`, model id, question-set version).
+### Where it runs
 
-How to reuse it
-    Copy this file. Replace the option descriptions with your own catalog of next steps, lookups
-    and analyzers (keep `none` options: they are the "no extra work needed" axes). Build a `view`
-    dict with your facts split into VERIFIED / MODEL ESTIMATES / UNTRUSTED and render it with
-    `render_state`. Compute eligibility in your own policy code, call
-    `DeciderGatekeeper(decider).first_pass(view, eligible, mode, event_id)`, execute the returned
-    plan, run your own deterministic resolver after each result, and call `reroute` only when the
-    resolver says the case is still open. Tune LOW_CONF / ALLOW_MIN_CONF / SEVERE_P / NEED_P on a
-    labelled tune split (`./kit bench --split tune`), report a held-out split.
+[`agent/shield/router.py`](agent/shield/router.py) runs the gatekeeper for each event:
 
-Typed questions:
-
-```python
-QUESTIONS = {
-    "next_step": Decider.choice(
-        "Pick the next security action for the pending step. Only options listed under 'Eligible next steps' are possible. "
-        "UNKNOWN is never permission.",
-        NEXT_STEP_OPTIONS),
-    "next_step_audit": Decider.choice(
-        "The step already happened (audit-only: it cannot be blocked). Pick the next security action. Only options listed under "
-        "'Eligible next steps' are possible.",
-        NEXT_STEP_AUDIT_OPTIONS),
-    "risk_severity": Decider.score(
-        "How serious would the harm be if this step goes ahead? low: the data stays within its allowed scope. moderate: limited "
-        "harm, or facts still unverified. high: confidential data may leave its scope, or the agent looks manipulated. critical: "
-        "restricted or bulk sensitive data may leave the company.",
-        SEVERITY_LEVELS),
-    "evidence_tool": Decider.choice(
-        "Which eligible lookup settles the most important missing fact? Answer none if no lookup is needed.",
-        EVIDENCE_TOOL_OPTIONS),
-    "analyzer": Decider.choice(
-        "Does the content need a deeper semantic analyzer, and which eligible one? Answer none if not.",
-        ANALYZER_OPTIONS),
-}
+```mermaid
+flowchart TD
+    A["Verify adapter input and build trusted context"] --> B{"Tier 0 hard deny?"}
+    B -->|Yes| I["Finalize policy and enforce through adapter"]
+    B -->|No| C["Compute eligibility and ask Decider"]
+    C --> D["Validate plan against policy"]
+    D -->|Terminal candidate| I
+    D -->|Investigation| E["Run next eligible lookup or analyzer"]
+    E --> F{"Deterministic resolver"}
+    F -->|Conclusive| I
+    F -->|Open; queued step remains| E
+    F -->|Open; unused eligible step and budget remain| C
+    F -->|No further step or budget| H["Safe fallback"]
+    H --> I
 ```
 
-## Measured
+The first visit to the Decider uses `first_pass(...)`; later visits use `reroute(...)`. The chat agent in [`agent/agent.py`](agent/agent.py) runs this pipeline before its LLM explains the outcome. The chat LLM cannot choose a security action.
+
+### How probabilities become actions
+
+[`plan_from_answers`](agent/decision.py) converts the returned distributions into a plan of at most two investigation steps:
+
+1. **Mask to eligible options.** Remove choices the policy engine disallows and renormalize. Record both raw and masked distributions; veto ineligible proposals.
+2. **Gate the fast path.** Allow requires masked confidence `>= ALLOW_MIN_CONF`, severe-risk probability `< SEVERE_P`, and both lookup-needed and analyzer-needed probabilities `< NEED_P`. An allow that fails these checks receives low-confidence handling. Other terminal choices require confidence `>= LOW_CONF`; every candidate still goes through final policy validation.
+3. **Plan targeted investigation.** `FETCH_EVIDENCE` selects the best eligible lookup and can queue an analyzer; `ESCALATE_SEMANTIC` selects an analyzer and can queue a lookup. With low confidence, prefer an available authoritative lookup first.
+4. **Handle uncertainty explicitly.** Try an eligible lookup, adding analysis when the analysis or severity signal requires it; use an analyzer alone if no lookup remains. If neither is eligible, fall back to `BLOCK` for inline events or `CREATE_REVIEW_CASE` for audit-only events. Unknown facts never grant permission.
+5. **Resolve and stop.** After each result, the deterministic resolver either finalizes, runs the next queued step, or requests a re-route only while an unused eligible step remains. Per-event limits are two lookups, one analyzer call, four Decider calls and a deadline. Completed lookups and analyzers are never repeated.
+
+Each Decider call is logged with its probabilities, selected `pick`, `confidence`, acted-on `verdict`, latency, model and question-set version. The log also records low-confidence handling, vetoes and suppressed repeats.
+
+### Reuse the pattern
+
+1. Copy [`agent/decision.py`](agent/decision.py) and replace the next-step, lookup and analyzer catalogs. Keep the `none` options.
+2. Build a `view` that separates **VERIFIED**, **MODEL ESTIMATES** and **UNTRUSTED** content; `render_state` formats it. Compute eligibility in your own deterministic policy code.
+3. Call `DeciderGatekeeper(decider).first_pass(view, eligible, mode, event_id)`. Validate and execute the returned plan, resolve after every result, and call `reroute` only for an unresolved case with further eligible work.
+4. Tune `LOW_CONF`, `ALLOW_MIN_CONF`, `SEVERE_P` and `NEED_P` on a labelled tune split (`./kit bench --split tune`), then report the held-out test split.
+
+The [known limitations](#known-limitations-being-fixed) above still apply to this implementation.
+
+## Decision-model benchmark
+
+This separate benchmark compares individual typed-question answers with Amazon Nova Pro on the test split. Its 15 labelled cases contain 54 scored answers; these are different units and cases from the 16-scenario routing benchmark above. The four figures below come from this decision-model run.
 
 Decider: strands-decider-2b-hobson-v19 (ugmdu). 15 labelled cases, 54 decisions.
 
@@ -225,7 +188,35 @@ Decider: strands-decider-2b-hobson-v19 (ugmdu). 15 labelled cases, 54 decisions.
 
 At the median the LLM was 3.2x faster than the decider on this setup (ugmdu).
 
-Reproduce with `./kit bench` (cases in `agent/eval_cases.jsonl`; charts in `submission/bench/`).
+### Accuracy
+
+![Decision-model accuracy: Strands Decider 2B and Amazon Nova Pro both score 61.1 percent](submission/bench/bench-accuracy.png)
+
+*Figure 1. Accuracy across the 54 scored typed-question answers. This measures question-level agreement with labels, rather than final security dispositions.*
+
+### Latency
+
+![Median latency: Strands Decider 2B 6824 milliseconds; Amazon Nova Pro 2085 milliseconds](submission/bench/bench-latency.png)
+
+*Figure 2. Median measured request latency in the decision-model benchmark. The hosted Decider includes network time and was slower than the Bedrock LLM in this run.*
+
+### Cost
+
+![Reported cost per 1000 scored answers: Strands Decider 2B 0.0350 dollars; Amazon Nova Pro 0.6003 dollars](submission/bench/bench-cost.png)
+
+*Figure 3. Cost per 1,000 scored answers using the benchmark's accounting: configured hosting cost for the Decider and token-based cost for the LLM. These are decision-model costs, excluding the full investigation pipeline.*
+
+### Confidence and coverage
+
+![Accuracy versus share of typed-question answers accepted at different confidence thresholds](submission/bench/bench-confidence.png)
+
+*Figure 4. Accuracy among answers above each confidence threshold versus the share accepted. The rest are marked for human review by this benchmark; the runtime uses the bounded investigation and fallback rules described above.*
+
+At the table's threshold of `0.7`, the Decider answered 7% alone with 100.0% accuracy on that subset. Nova Pro answered 100% alone with 61.1% accuracy. The small accepted subset limits what the Decider's confident accuracy establishes.
+
+[Benchmark report](submission/bench/results.md) · [Raw results](submission/bench/results.json)
+
+Reproduce with `./kit bench --split test` (cases in [`agent/eval_cases.jsonl`](agent/eval_cases.jsonl); figures in [`submission/bench/`](submission/bench/)).
 
 ## Run it
 
