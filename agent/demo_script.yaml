@@ -1,0 +1,23 @@
+# What the demo video shows. Each turn is typed into the demo UI against the real agent.
+# `narrate` describes the situation only; make_video.py appends what the decider actually decided.
+title: "AgentShield: a Decider-first security router for AI agents"
+pitch: "Strands Decider gatekeeps every step a third-party AI agent takes, and spends deeper checks only where they change the outcome."
+features:
+  - "a first-pass gatekeeper on every event: fast allow, fast block, or a routed investigation"
+  - "targeted trusted lookups and a stronger semantic analyzer, chosen by the Decider, alone or together"
+  - "provenance across the session, so a paraphrased confidential report keeps its label"
+  - "hard policy rules and approvals no model can override, and honest allow-or-deny enforcement"
+  - "a reproducible benchmark against rules-only, fixed, always-deep and LLM routing"
+eager: false
+intro: "AgentShield guards the steps third-party AI agents take for a fictional company. The vendors are simulated and the data is synthetic. Every event passes hard policy rules first, then Strands Decider as the first-pass gatekeeper. Amazon Bedrock is the optional deep semantic analyzer and writes the explanation in the chat."
+intro_normal: "AgentShield runs on Amazon Bedrock AgentCore Runtime. Every event passes hard policy rules first, then Strands Decider as the first-pass gatekeeper; Amazon Bedrock writes the explanation and is the optional deep semantic analyzer. The vendors are simulated and the data is synthetic."
+turns:
+  - say: "Evaluate EVT-101"
+    narrate: "A marketing agent wants to read the public brand guide for the newsletter it is writing. Everything about it is already verified."
+  - say: "Evaluate EVT-105"
+    narrate: "A finance agent is emailing a confidential forecast summary to an outside adviser whose address nobody has checked yet."
+  - say: "Evaluate EVT-109"
+    narrate: "An agent sends an internal partner FAQ to an approved partner. The facts are clean, but the wording sounds like the unreleased roadmap."
+  - say: "Evaluate EVT-114"
+    narrate: "A partner briefing built from an internal FAQ plus pasted text of unknown origin is about to go out, and it mentions a leadership decision."
+outro: "One fast decision pass on every event, deeper checks only when the Decider routes there, and policy that always has the final word."

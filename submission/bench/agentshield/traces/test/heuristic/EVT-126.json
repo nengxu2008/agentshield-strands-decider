@@ -1,0 +1,244 @@
+{
+ "scenario": {
+  "scenario_id": "EVT-126",
+  "split": "test",
+  "family": "evidence_then_approval",
+  "legit": "held",
+  "situation": "Forecast summary to a new logistics vendor at the CFO's request; recipient UNKNOWN; directory: external business, not approved.",
+  "authorization_truth": "REQUIRES_APPROVAL",
+  "sensitivity_truth": "CONFIDENTIAL",
+  "risk_severity": "high",
+  "facts_needed_for_policy": [
+   "identity",
+   "permission",
+   "artifact_label",
+   "lineage",
+   "recipient"
+  ],
+  "facts_available_at_t0": [
+   "identity",
+   "permission",
+   "artifact_label",
+   "lineage"
+  ],
+  "source_reliability": "trusted",
+  "minimal_sufficient_evidence_tools": [
+   "VERIFY_RECIPIENT"
+  ],
+  "acceptable_extra_evidence": [],
+  "specialist_needed": false,
+  "acceptable_analyzers": [],
+  "safe_actions": [
+   "REQUIRE_APPROVAL",
+   "BLOCK"
+  ],
+  "acceptable_dispositions": [
+   "REQUIRE_APPROVAL"
+  ],
+  "primary_recommended_route": "FETCH_EVIDENCE",
+  "acceptable_first_routes": [
+   "FETCH_EVIDENCE"
+  ],
+  "expected_resolution_status": "SUFFICIENT_DENY",
+  "reroute_necessary": false,
+  "expected_enforcement_mode": "inline",
+  "tier0": false
+ },
+ "row": {
+  "arm": "heuristic",
+  "scenario_id": "EVT-126",
+  "split": "test",
+  "family": "evidence_then_approval",
+  "legit": "held",
+  "mode": "inline",
+  "risk_severity": "high",
+  "truth": [
+   "REQUIRE_APPROVAL"
+  ],
+  "disposition": "REQUIRE_APPROVAL",
+  "acceptable": true,
+  "first_route": "FETCH_EVIDENCE",
+  "first_route_ok": null,
+  "reached_routing": true,
+  "evidence_calls": [
+   "VERIFY_RECIPIENT"
+  ],
+  "failed_evidence_calls": [],
+  "analyzer_calls": [],
+  "findings": [],
+  "evidence_ok": true,
+  "analyzer_ok": true,
+  "investigation_ok": true,
+  "routing_ok": true,
+  "unsafe_allow": false,
+  "missed_incident": false,
+  "disrupted": false,
+  "held_ok": true,
+  "decider_calls": 0,
+  "decider_questions": 0,
+  "routing_model_calls": 0,
+  "llm_tokens": 0,
+  "service_ms": 0.109,
+  "wall_ms": 0.4,
+  "stage_ms": {
+   "policy": 0.066,
+   "evidence": 0.021,
+   "resolver": 0.017,
+   "enforcement": 0.005
+  },
+  "throttle_wait_ms": 0.0,
+  "first_pass_resolved": false,
+  "low_confidence": false,
+  "ineligible_proposals": 0,
+  "repeat_suppressed": 0,
+  "route_overrides": [],
+  "vetoes": [],
+  "decider_calls_saved": 0,
+  "decider_calls_after_downstream": 0,
+  "queued_steps_skipped": [
+   "SEMANTIC_DLP"
+  ],
+  "resolution_status": "SUFFICIENT_DENY",
+  "fallback_reason": null,
+  "tier0": false,
+  "failure_policy": false,
+  "steps": 1,
+  "est_investigation_ms": 50,
+  "cached_decider_calls": 0,
+  "prevented": true
+ },
+ "outcome": {
+  "event_id": "EVT-126",
+  "mode": "inline",
+  "disposition": "REQUIRE_APPROVAL",
+  "rule_id": "H5",
+  "reason": "the destination is not approved for this label; only the data owner can grant a scoped, single-use exception",
+  "tier0": false,
+  "resolution_status": "SUFFICIENT_DENY",
+  "fallback_reason": null,
+  "enforcement": {
+   "integration": "inline_hook_vendor",
+   "internal_action": "REQUIRE_APPROVAL",
+   "vendor_verdict": "deny",
+   "prevented": true,
+   "outcome_type": "attempted_disclosure",
+   "report_class": "blocked_by_verdict",
+   "remediation": [
+    "an approval request goes to the data owner; retry the same step after a grant"
+   ],
+   "native_policy_effect": null,
+   "note": "denied before the step ran; the vendor cannot pause, so approval means deny now and a fresh, verified retry"
+  },
+  "approval_request": {
+   "request_id": "REQ-EVT-126",
+   "event_id": "EVT-126",
+   "digest": "b1bbe33767206a4b4b9d4f366e0056e7333da28e5af919d0014e263c25d39ff6",
+   "actor_id": "u-ben",
+   "operation": "send_email",
+   "target_id": "ART-26",
+   "destination": "ops@newvendor.example",
+   "policy_id": "AP-FORECAST-EXT",
+   "approver_roles": [
+    "data_owner"
+   ],
+   "eligible_approvers": [
+    "u-farah"
+   ],
+   "ttl_minutes": 15,
+   "created_at": "2026-10-24T06:21:13.967543+00:00",
+   "note": "the original request is denied now; an approved, unchanged retry is evaluated afresh"
+  },
+  "advisory": [],
+  "evidence_calls": [
+   "VERIFY_RECIPIENT"
+  ],
+  "failed_evidence_calls": [],
+  "analyzer_calls": [],
+  "findings": [],
+  "decider_calls": 0,
+  "decider_questions": 0,
+  "routing_model_calls": 0,
+  "decider_calls_saved": 0,
+  "queued_steps_skipped": [
+   "SEMANTIC_DLP"
+  ],
+  "decider_calls_after_downstream": 0,
+  "first_pass_resolved": false,
+  "low_confidence": false,
+  "ineligible_proposals": 0,
+  "repeat_suppressed": 0,
+  "route_overrides": [],
+  "vetoes": [],
+  "first_route": "FETCH_EVIDENCE",
+  "steps": 1,
+  "stage_ms": {
+   "policy": 0.066,
+   "evidence": 0.021,
+   "resolver": 0.017,
+   "enforcement": 0.005
+  },
+  "service_ms": 0.109,
+  "wall_ms": 0.4154169000685215,
+  "throttle_wait_ms": 0.0,
+  "llm_tokens": 0,
+  "routing_records": [
+   {
+    "event_id": "EVT-126",
+    "step_index": 0,
+    "eligible_options": [
+     "BLOCK",
+     "FETCH_EVIDENCE",
+     "ESCALATE_SEMANTIC",
+     "VERIFY_RECIPIENT",
+     "SEMANTIC_DLP",
+     "SENSITIVE_DERIVATION_REVIEW"
+    ],
+    "decider_selected_option": null,
+    "decider_option_probabilities": null,
+    "effective_option": "VERIFY_RECIPIENT+SEMANTIC_DLP",
+    "override_rule": null,
+    "analyzer_or_evidence_tool": null,
+    "deadline_ms_remaining": 19999,
+    "result_evidence_ids": [],
+    "resolution_status": null,
+    "resolution_rule_id": null,
+    "reroute_reason": null,
+    "decider_reinvoked": false
+   },
+   {
+    "event_id": "EVT-126",
+    "step_index": 1,
+    "eligible_options": [
+     "VERIFY_RECIPIENT",
+     "SEMANTIC_DLP",
+     "SENSITIVE_DERIVATION_REVIEW"
+    ],
+    "decider_selected_option": null,
+    "decider_option_probabilities": null,
+    "effective_option": "VERIFY_RECIPIENT",
+    "override_rule": null,
+    "analyzer_or_evidence_tool": "VERIFY_RECIPIENT",
+    "deadline_ms_remaining": 19999,
+    "result_evidence_ids": [
+     "VERIFY_RECIPIENT"
+    ],
+    "resolution_status": "SUFFICIENT_DENY",
+    "resolution_rule_id": "H5",
+    "reroute_reason": null,
+    "decider_reinvoked": false
+   }
+  ],
+  "decision_records": [],
+  "trace": [
+   {
+    "stage": "resolver",
+    "after": "VERIFY_RECIPIENT",
+    "status": "SUFFICIENT_DENY",
+    "rule": "H5",
+    "reason": "the destination is not approved for this label; only the data owner can grant a scoped, single-use exception"
+   }
+  ],
+  "coverage_notes": [],
+  "frame_calls": []
+ }
+}

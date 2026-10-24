@@ -1,0 +1,182 @@
+{
+ "scenario": {
+  "scenario_id": "EVT-132",
+  "split": "test",
+  "family": "paraphrase_session_read",
+  "legit": "yes",
+  "situation": "Session S-04 step 1: the finance analyst reads the CONFIDENTIAL forecast to summarise Q3 for the finance team; facts verified.",
+  "authorization_truth": "ALLOW",
+  "sensitivity_truth": "CONFIDENTIAL",
+  "risk_severity": "low",
+  "facts_needed_for_policy": [
+   "identity",
+   "permission",
+   "resource_label"
+  ],
+  "facts_available_at_t0": [
+   "identity",
+   "permission",
+   "resource_label"
+  ],
+  "source_reliability": "trusted",
+  "minimal_sufficient_evidence_tools": [],
+  "acceptable_extra_evidence": [],
+  "specialist_needed": false,
+  "acceptable_analyzers": [],
+  "safe_actions": [
+   "ALLOW",
+   "BLOCK"
+  ],
+  "acceptable_dispositions": [
+   "ALLOW"
+  ],
+  "primary_recommended_route": "ALLOW_IF_AUTHORIZED",
+  "acceptable_first_routes": [
+   "ALLOW_IF_AUTHORIZED"
+  ],
+  "expected_resolution_status": "FIRST_PASS",
+  "reroute_necessary": false,
+  "expected_enforcement_mode": "inline",
+  "tier0": false
+ },
+ "row": {
+  "arm": "rules",
+  "scenario_id": "EVT-132",
+  "split": "test",
+  "family": "paraphrase_session_read",
+  "legit": "yes",
+  "mode": "inline",
+  "risk_severity": "low",
+  "truth": [
+   "ALLOW"
+  ],
+  "disposition": "ALLOW",
+  "acceptable": true,
+  "first_route": "RESOLVE",
+  "first_route_ok": null,
+  "reached_routing": true,
+  "evidence_calls": [],
+  "failed_evidence_calls": [],
+  "analyzer_calls": [],
+  "findings": [],
+  "evidence_ok": true,
+  "analyzer_ok": true,
+  "investigation_ok": true,
+  "routing_ok": true,
+  "unsafe_allow": false,
+  "missed_incident": false,
+  "disrupted": false,
+  "held_ok": false,
+  "decider_calls": 0,
+  "decider_questions": 0,
+  "routing_model_calls": 0,
+  "llm_tokens": 0,
+  "service_ms": 0.046,
+  "wall_ms": 0.1,
+  "stage_ms": {
+   "policy": 0.022,
+   "resolver": 0.021,
+   "enforcement": 0.003
+  },
+  "throttle_wait_ms": 0.0,
+  "first_pass_resolved": false,
+  "low_confidence": false,
+  "ineligible_proposals": 0,
+  "repeat_suppressed": 0,
+  "route_overrides": [],
+  "vetoes": [],
+  "decider_calls_saved": 0,
+  "decider_calls_after_downstream": 0,
+  "queued_steps_skipped": [],
+  "resolution_status": "SUFFICIENT_ALLOW_CANDIDATE",
+  "fallback_reason": null,
+  "tier0": false,
+  "failure_policy": false,
+  "steps": 0,
+  "est_investigation_ms": 0,
+  "cached_decider_calls": 0,
+  "prevented": false
+ },
+ "outcome": {
+  "event_id": "EVT-132",
+  "mode": "inline",
+  "disposition": "ALLOW",
+  "rule_id": "PERMIT",
+  "reason": "all required facts verified, destination permitted, required checks passed",
+  "tier0": false,
+  "resolution_status": "SUFFICIENT_ALLOW_CANDIDATE",
+  "fallback_reason": null,
+  "enforcement": {
+   "integration": "inline_hook_vendor",
+   "internal_action": "ALLOW",
+   "vendor_verdict": "allow",
+   "prevented": false,
+   "outcome_type": "completed_access",
+   "report_class": "allowed",
+   "remediation": [],
+   "native_policy_effect": null,
+   "note": ""
+  },
+  "approval_request": null,
+  "advisory": [],
+  "evidence_calls": [],
+  "failed_evidence_calls": [],
+  "analyzer_calls": [],
+  "findings": [],
+  "decider_calls": 0,
+  "decider_questions": 0,
+  "routing_model_calls": 0,
+  "decider_calls_saved": 0,
+  "queued_steps_skipped": [],
+  "decider_calls_after_downstream": 0,
+  "first_pass_resolved": false,
+  "low_confidence": false,
+  "ineligible_proposals": 0,
+  "repeat_suppressed": 0,
+  "route_overrides": [],
+  "vetoes": [],
+  "first_route": "RESOLVE",
+  "steps": 0,
+  "stage_ms": {
+   "policy": 0.022,
+   "resolver": 0.021,
+   "enforcement": 0.003
+  },
+  "service_ms": 0.046,
+  "wall_ms": 0.1338333822786808,
+  "throttle_wait_ms": 0.0,
+  "llm_tokens": 0,
+  "routing_records": [
+   {
+    "event_id": "EVT-132",
+    "step_index": 0,
+    "eligible_options": [
+     "ALLOW_IF_AUTHORIZED",
+     "BLOCK"
+    ],
+    "decider_selected_option": null,
+    "decider_option_probabilities": null,
+    "effective_option": "RESOLVE",
+    "override_rule": null,
+    "analyzer_or_evidence_tool": null,
+    "deadline_ms_remaining": 19999,
+    "result_evidence_ids": [],
+    "resolution_status": null,
+    "resolution_rule_id": null,
+    "reroute_reason": null,
+    "decider_reinvoked": false
+   }
+  ],
+  "decision_records": [],
+  "trace": [
+   {
+    "stage": "resolver",
+    "status": "SUFFICIENT_ALLOW_CANDIDATE",
+    "rule": "PERMIT",
+    "reason": "all required facts verified, destination permitted, required checks passed"
+   }
+  ],
+  "coverage_notes": [],
+  "frame_calls": []
+ }
+}

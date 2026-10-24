@@ -1,0 +1,211 @@
+{
+ "scenario": {
+  "scenario_id": "EVT-124",
+  "split": "test",
+  "family": "targeted_evidence",
+  "legit": "yes",
+  "situation": "Support engineer reads the ticket export for ticket summaries; label UNKNOWN in the cache; the label service says INTERNAL.",
+  "authorization_truth": "ALLOW",
+  "sensitivity_truth": "INTERNAL",
+  "risk_severity": "moderate",
+  "facts_needed_for_policy": [
+   "identity",
+   "permission",
+   "resource_label"
+  ],
+  "facts_available_at_t0": [
+   "identity",
+   "permission"
+  ],
+  "source_reliability": "trusted",
+  "minimal_sufficient_evidence_tools": [
+   "GET_RESOURCE_LABEL"
+  ],
+  "acceptable_extra_evidence": [],
+  "specialist_needed": false,
+  "acceptable_analyzers": [],
+  "safe_actions": [
+   "ALLOW",
+   "BLOCK"
+  ],
+  "acceptable_dispositions": [
+   "ALLOW"
+  ],
+  "primary_recommended_route": "FETCH_EVIDENCE",
+  "acceptable_first_routes": [
+   "FETCH_EVIDENCE"
+  ],
+  "expected_resolution_status": "SUFFICIENT_ALLOW_CANDIDATE",
+  "reroute_necessary": false,
+  "expected_enforcement_mode": "inline",
+  "tier0": false
+ },
+ "row": {
+  "arm": "always_deep",
+  "scenario_id": "EVT-124",
+  "split": "test",
+  "family": "targeted_evidence",
+  "legit": "yes",
+  "mode": "inline",
+  "risk_severity": "moderate",
+  "truth": [
+   "ALLOW"
+  ],
+  "disposition": "ALLOW",
+  "acceptable": true,
+  "first_route": "FETCH_EVIDENCE",
+  "first_route_ok": null,
+  "reached_routing": true,
+  "evidence_calls": [
+   "GET_RESOURCE_LABEL"
+  ],
+  "failed_evidence_calls": [],
+  "analyzer_calls": [],
+  "findings": [],
+  "evidence_ok": true,
+  "analyzer_ok": true,
+  "investigation_ok": true,
+  "routing_ok": true,
+  "unsafe_allow": false,
+  "missed_incident": false,
+  "disrupted": false,
+  "held_ok": false,
+  "decider_calls": 0,
+  "decider_questions": 0,
+  "routing_model_calls": 0,
+  "llm_tokens": 0,
+  "service_ms": 0.067,
+  "wall_ms": 0.2,
+  "stage_ms": {
+   "policy": 0.033,
+   "evidence": 0.01,
+   "resolver": 0.021,
+   "enforcement": 0.003
+  },
+  "throttle_wait_ms": 0.0,
+  "first_pass_resolved": false,
+  "low_confidence": false,
+  "ineligible_proposals": 0,
+  "repeat_suppressed": 0,
+  "route_overrides": [],
+  "vetoes": [],
+  "decider_calls_saved": 0,
+  "decider_calls_after_downstream": 0,
+  "queued_steps_skipped": [],
+  "resolution_status": "SUFFICIENT_ALLOW_CANDIDATE",
+  "fallback_reason": null,
+  "tier0": false,
+  "failure_policy": false,
+  "steps": 1,
+  "est_investigation_ms": 50,
+  "cached_decider_calls": 0,
+  "prevented": false
+ },
+ "outcome": {
+  "event_id": "EVT-124",
+  "mode": "inline",
+  "disposition": "ALLOW",
+  "rule_id": "PERMIT",
+  "reason": "all required facts verified, destination permitted, required checks passed",
+  "tier0": false,
+  "resolution_status": "SUFFICIENT_ALLOW_CANDIDATE",
+  "fallback_reason": null,
+  "enforcement": {
+   "integration": "inline_hook_vendor",
+   "internal_action": "ALLOW",
+   "vendor_verdict": "allow",
+   "prevented": false,
+   "outcome_type": "completed_access",
+   "report_class": "allowed",
+   "remediation": [],
+   "native_policy_effect": null,
+   "note": ""
+  },
+  "approval_request": null,
+  "advisory": [],
+  "evidence_calls": [
+   "GET_RESOURCE_LABEL"
+  ],
+  "failed_evidence_calls": [],
+  "analyzer_calls": [],
+  "findings": [],
+  "decider_calls": 0,
+  "decider_questions": 0,
+  "routing_model_calls": 0,
+  "decider_calls_saved": 0,
+  "queued_steps_skipped": [],
+  "decider_calls_after_downstream": 0,
+  "first_pass_resolved": false,
+  "low_confidence": false,
+  "ineligible_proposals": 0,
+  "repeat_suppressed": 0,
+  "route_overrides": [],
+  "vetoes": [],
+  "first_route": "FETCH_EVIDENCE",
+  "steps": 1,
+  "stage_ms": {
+   "policy": 0.033,
+   "evidence": 0.01,
+   "resolver": 0.021,
+   "enforcement": 0.003
+  },
+  "service_ms": 0.067,
+  "wall_ms": 0.16845809295773506,
+  "throttle_wait_ms": 0.0,
+  "llm_tokens": 0,
+  "routing_records": [
+   {
+    "event_id": "EVT-124",
+    "step_index": 0,
+    "eligible_options": [
+     "BLOCK",
+     "FETCH_EVIDENCE",
+     "GET_RESOURCE_LABEL"
+    ],
+    "decider_selected_option": null,
+    "decider_option_probabilities": null,
+    "effective_option": "GET_RESOURCE_LABEL",
+    "override_rule": null,
+    "analyzer_or_evidence_tool": null,
+    "deadline_ms_remaining": 19999,
+    "result_evidence_ids": [],
+    "resolution_status": null,
+    "resolution_rule_id": null,
+    "reroute_reason": null,
+    "decider_reinvoked": false
+   },
+   {
+    "event_id": "EVT-124",
+    "step_index": 1,
+    "eligible_options": [
+     "GET_RESOURCE_LABEL"
+    ],
+    "decider_selected_option": null,
+    "decider_option_probabilities": null,
+    "effective_option": "GET_RESOURCE_LABEL",
+    "override_rule": null,
+    "analyzer_or_evidence_tool": "GET_RESOURCE_LABEL",
+    "deadline_ms_remaining": 19999,
+    "result_evidence_ids": [
+     "GET_RESOURCE_LABEL"
+    ],
+    "resolution_status": "SUFFICIENT_ALLOW_CANDIDATE",
+    "resolution_rule_id": "PERMIT",
+    "reroute_reason": null,
+    "decider_reinvoked": false
+   }
+  ],
+  "decision_records": [],
+  "trace": [
+   {
+    "stage": "resolver",
+    "after": "GET_RESOURCE_LABEL",
+    "status": "SUFFICIENT_ALLOW_CANDIDATE",
+    "rule": "PERMIT",
+    "reason": "all required facts verified, destination permitted, required checks passed"
+   }
+  ],
+  "coverage_notes": [],
+  "frame_calls": []
+ }
+}

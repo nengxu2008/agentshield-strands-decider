@@ -1,0 +1,13 @@
+[
+ {"match": "@corp.example", "kind": "domain", "class": "internal", "max_label": "RESTRICTED", "org": "corp.example (company mail)", "code_rule": true},
+ {"match": "@freemail.example", "kind": "domain", "class": "personal", "max_label": "PUBLIC", "org": "personal webmail", "code_rule": true},
+ {"match": "news@partner-one.example", "kind": "address", "class": "approved_partner", "max_label": "INTERNAL", "org": "Partner One (newsletter partner)"},
+ {"match": "recruiting@partner-one.example", "kind": "address", "class": "approved_partner", "max_label": "INTERNAL", "org": "Partner One (recruiting partner)"},
+ {"match": "deals@partner-two.example", "kind": "address", "class": "nda_partner", "max_label": "CONFIDENTIAL", "org": "Partner Two (NDA in force)"},
+ {"match": "integration@partner-two.example", "kind": "address", "class": "nda_partner", "max_label": "CONFIDENTIAL", "org": "Partner Two (NDA in force)"},
+ {"match": "sales@partner-three.example", "kind": "address", "class": "approved_partner", "max_label": "INTERNAL", "org": "Partner Three (reseller)"},
+ {"match": "ops@newvendor.example", "kind": "address", "class": "external_business", "max_label": "PUBLIC", "org": "New logistics vendor (no data agreement yet)"},
+ {"match": "handover@supportco.example", "kind": "address", "class": "external_business", "max_label": "PUBLIC", "org": "Support outsourcing vendor (no data agreement yet)"},
+ {"match": "@lumen-advisory.example", "kind": "domain", "class": "blocklisted", "max_label": null, "org": "former advisory firm (engagement terminated)"},
+ {"match": "@corp-backup.example", "kind": "domain", "class": "blocklisted", "max_label": null, "org": "look-alike domain, not owned by the company"}
+]

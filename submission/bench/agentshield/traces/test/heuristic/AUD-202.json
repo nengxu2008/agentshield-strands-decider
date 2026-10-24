@@ -1,0 +1,230 @@
+{
+ "scenario": {
+  "scenario_id": "AUD-202",
+  "split": "test",
+  "family": "audit_only_review",
+  "legit": "no",
+  "situation": "After the fact: an artifact with untracked lineage was shared with the NDA partner; the provenance service shows a board-minutes origin and the mandatory review never ran.",
+  "authorization_truth": "POLICY_GAP",
+  "sensitivity_truth": "CONFIDENTIAL",
+  "risk_severity": "moderate",
+  "facts_needed_for_policy": [
+   "identity",
+   "permission",
+   "artifact_label",
+   "lineage",
+   "recipient"
+  ],
+  "facts_available_at_t0": [
+   "identity",
+   "permission",
+   "recipient"
+  ],
+  "source_reliability": "trusted",
+  "minimal_sufficient_evidence_tools": [
+   "GET_PROVENANCE"
+  ],
+  "acceptable_extra_evidence": [],
+  "specialist_needed": false,
+  "acceptable_analyzers": [],
+  "safe_actions": [
+   "CREATE_REVIEW_CASE",
+   "AUDIT_ALERT"
+  ],
+  "acceptable_dispositions": [
+   "CREATE_REVIEW_CASE",
+   "AUDIT_ALERT"
+  ],
+  "primary_recommended_route": "FETCH_EVIDENCE",
+  "acceptable_first_routes": [
+   "FETCH_EVIDENCE"
+  ],
+  "expected_resolution_status": "SUFFICIENT_DENY",
+  "reroute_necessary": false,
+  "expected_enforcement_mode": "audit_only",
+  "tier0": false
+ },
+ "row": {
+  "arm": "heuristic",
+  "scenario_id": "AUD-202",
+  "split": "test",
+  "family": "audit_only_review",
+  "legit": "no",
+  "mode": "audit_only",
+  "risk_severity": "moderate",
+  "truth": [
+   "CREATE_REVIEW_CASE",
+   "AUDIT_ALERT"
+  ],
+  "disposition": "CREATE_REVIEW_CASE",
+  "acceptable": true,
+  "first_route": "FETCH_EVIDENCE",
+  "first_route_ok": null,
+  "reached_routing": true,
+  "evidence_calls": [
+   "GET_PROVENANCE"
+  ],
+  "failed_evidence_calls": [],
+  "analyzer_calls": [],
+  "findings": [],
+  "evidence_ok": true,
+  "analyzer_ok": true,
+  "investigation_ok": true,
+  "routing_ok": true,
+  "unsafe_allow": false,
+  "missed_incident": false,
+  "disrupted": false,
+  "held_ok": false,
+  "decider_calls": 0,
+  "decider_questions": 0,
+  "routing_model_calls": 0,
+  "llm_tokens": 0,
+  "service_ms": 0.108,
+  "wall_ms": 0.3,
+  "stage_ms": {
+   "policy": 0.056,
+   "evidence": 0.036,
+   "resolver": 0.011,
+   "enforcement": 0.005
+  },
+  "throttle_wait_ms": 0.0,
+  "first_pass_resolved": false,
+  "low_confidence": false,
+  "ineligible_proposals": 0,
+  "repeat_suppressed": 0,
+  "route_overrides": [],
+  "vetoes": [],
+  "decider_calls_saved": 0,
+  "decider_calls_after_downstream": 0,
+  "queued_steps_skipped": [
+   "SENSITIVE_DERIVATION_REVIEW"
+  ],
+  "resolution_status": "SUFFICIENT_DENY",
+  "fallback_reason": null,
+  "tier0": false,
+  "failure_policy": false,
+  "steps": 1,
+  "est_investigation_ms": 50,
+  "cached_decider_calls": 0,
+  "prevented": false
+ },
+ "outcome": {
+  "event_id": "AUD-202",
+  "mode": "audit_only",
+  "disposition": "CREATE_REVIEW_CASE",
+  "rule_id": "A2",
+  "reason": "an audit-only egress where a mandatory pre-egress analyzer never ran -> CREATE_REVIEW_CASE plus an advisory RECOMMEND_POLICY_CHANGE",
+  "tier0": false,
+  "resolution_status": "SUFFICIENT_DENY",
+  "fallback_reason": null,
+  "enforcement": {
+   "integration": "audit_only_vendor",
+   "internal_action": "CREATE_REVIEW_CASE",
+   "vendor_verdict": null,
+   "prevented": false,
+   "outcome_type": "confirmed_disclosure",
+   "report_class": "review_case",
+   "remediation": [
+    "RECOMMEND_POLICY_CHANGE: require the derivation review before files derived from board minutes can be shared"
+   ],
+   "native_policy_effect": "none",
+   "note": "observed after it happened: nothing was blocked or prevented by AgentShield"
+  },
+  "approval_request": null,
+  "advisory": [
+   "RECOMMEND_POLICY_CHANGE: require the derivation review before files derived from board minutes can be shared"
+  ],
+  "evidence_calls": [
+   "GET_PROVENANCE"
+  ],
+  "failed_evidence_calls": [],
+  "analyzer_calls": [],
+  "findings": [],
+  "decider_calls": 0,
+  "decider_questions": 0,
+  "routing_model_calls": 0,
+  "decider_calls_saved": 0,
+  "queued_steps_skipped": [
+   "SENSITIVE_DERIVATION_REVIEW"
+  ],
+  "decider_calls_after_downstream": 0,
+  "first_pass_resolved": false,
+  "low_confidence": false,
+  "ineligible_proposals": 0,
+  "repeat_suppressed": 0,
+  "route_overrides": [],
+  "vetoes": [],
+  "first_route": "FETCH_EVIDENCE",
+  "steps": 1,
+  "stage_ms": {
+   "policy": 0.056,
+   "evidence": 0.036,
+   "resolver": 0.011,
+   "enforcement": 0.005
+  },
+  "service_ms": 0.108,
+  "wall_ms": 0.2576247788965702,
+  "throttle_wait_ms": 0.0,
+  "llm_tokens": 0,
+  "routing_records": [
+   {
+    "event_id": "AUD-202",
+    "step_index": 0,
+    "eligible_options": [
+     "AUDIT_ALERT",
+     "CREATE_REVIEW_CASE",
+     "FETCH_EVIDENCE",
+     "ESCALATE_SEMANTIC",
+     "GET_PROVENANCE",
+     "SEMANTIC_DLP",
+     "SENSITIVE_DERIVATION_REVIEW"
+    ],
+    "decider_selected_option": null,
+    "decider_option_probabilities": null,
+    "effective_option": "GET_PROVENANCE+SENSITIVE_DERIVATION_REVIEW",
+    "override_rule": null,
+    "analyzer_or_evidence_tool": null,
+    "deadline_ms_remaining": 119999,
+    "result_evidence_ids": [],
+    "resolution_status": null,
+    "resolution_rule_id": null,
+    "reroute_reason": null,
+    "decider_reinvoked": false
+   },
+   {
+    "event_id": "AUD-202",
+    "step_index": 1,
+    "eligible_options": [
+     "GET_PROVENANCE",
+     "SEMANTIC_DLP",
+     "SENSITIVE_DERIVATION_REVIEW"
+    ],
+    "decider_selected_option": null,
+    "decider_option_probabilities": null,
+    "effective_option": "GET_PROVENANCE",
+    "override_rule": null,
+    "analyzer_or_evidence_tool": "GET_PROVENANCE",
+    "deadline_ms_remaining": 119999,
+    "result_evidence_ids": [
+     "GET_PROVENANCE"
+    ],
+    "resolution_status": "SUFFICIENT_DENY",
+    "resolution_rule_id": "A2",
+    "reroute_reason": null,
+    "decider_reinvoked": false
+   }
+  ],
+  "decision_records": [],
+  "trace": [
+   {
+    "stage": "resolver",
+    "after": "GET_PROVENANCE",
+    "status": "SUFFICIENT_DENY",
+    "rule": "A2",
+    "reason": "an audit-only egress where a mandatory pre-egress analyzer never ran -> CREATE_REVIEW_CASE plus an advisory RECOMMEND_POLICY_CHANGE"
+   }
+  ],
+  "coverage_notes": [],
+  "frame_calls": []
+ }
+}

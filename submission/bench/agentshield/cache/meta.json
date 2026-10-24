@@ -1,0 +1,7 @@
+{
+ "decider_model": "strands-decider-2b-hobson-v19",
+ "llm_router_model": "us.amazon.nova-pro-v1:0",
+ "specialist_model": "us.amazon.nova-pro-v1:0",
+ "avg_router_tokens": 2235,
+ "avg_analyzer_tokens": 1367
+}

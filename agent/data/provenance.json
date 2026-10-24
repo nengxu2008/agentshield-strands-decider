@@ -1,0 +1,16 @@
+[
+ {"artifact_id": "ART-05", "title": "Q3 forecast summary", "session_id": "S-05", "sources": ["DOC-CONF-03"], "untracked_inputs": [], "transformation": "summary"},
+ {"artifact_id": "ART-06", "title": "Partner FAQ excerpt", "session_id": "S-06", "sources": ["DOC-INT-02"], "untracked_inputs": [], "transformation": "excerpt"},
+ {"artifact_id": "ART-07", "title": "Capacity forecast summary", "session_id": "S-07", "sources": ["DOC-CONF-03"], "untracked_inputs": [], "transformation": "summary"},
+ {"artifact_id": "ART-13", "title": "Compensation benchmarks note", "session_id": "S-13", "sources": ["DOC-PUB-14", "DOC-RES-05"], "untracked_inputs": [],
+  "transformation": "summary", "note": "the pasted spreadsheet was an export of the payroll register (tracked by the document system)"},
+ {"artifact_id": "ART-14", "title": "Partner briefing", "session_id": "S-14", "sources": ["DOC-INT-02"], "untracked_inputs": ["pasted text, origin not recorded"], "transformation": "rewrite"},
+ {"artifact_id": "ART-16", "title": "Joint-venture call recap", "session_id": "S-16", "sources": ["DOC-CONF-06"], "untracked_inputs": [], "transformation": "recap"},
+ {"artifact_id": "ART-26", "title": "Capacity forecast summary for the logistics vendor", "session_id": "S-26", "sources": ["DOC-CONF-03"], "untracked_inputs": [], "transformation": "summary"},
+ {"artifact_id": "ART-27", "title": "Reply to Partner Two integration team", "session_id": "S-27", "sources": ["DOC-INT-09"], "untracked_inputs": [],
+  "context_sources": ["WEB-12"], "transformation": "reply draft"},
+ {"artifact_id": "ART-29", "title": "Partner pricing note", "session_id": "S-29", "sources": ["DOC-PUB-13"], "untracked_inputs": ["pasted text, origin not recorded"], "transformation": "rewrite"},
+ {"artifact_id": "ART-34", "title": "Open escalations hand-over summary", "session_id": "S-34", "sources": ["DOC-CONF-10"], "untracked_inputs": [], "transformation": "summary"},
+ {"artifact_id": "ART-35", "title": "Weekend notes on Q3", "session_id": "S-04", "sources": ["DOC-CONF-03"], "untracked_inputs": [], "transformation": "paraphrase"},
+ {"artifact_id": "ART-36", "title": "Partner programme summary", "session_id": "S-36", "sources": ["DOC-CONF-06"], "untracked_inputs": [], "transformation": "summary"}
+]

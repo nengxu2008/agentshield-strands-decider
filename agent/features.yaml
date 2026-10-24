@@ -1,0 +1,17 @@
+# Amazon Bedrock AgentCore features for AgentShield. `./kit deploy` adds what is enabled here to
+# deploy/agentcore/agentcore.json and deploys it with the runtime.
+#
+# AgentShield uses neither: its context (sessions, provenance, approvals) is tracked by the
+# AgentShield pipeline itself, and its tools are local, read-only trusted services. Both stay off.
+
+memory:                    # AgentCore Memory: not used
+  enabled: false
+  name: agentmemory
+  strategies: [SEMANTIC]
+  expiry_days: 30
+
+gateway:                   # AgentCore Gateway: not used (the evidence tools are in-process, read-only)
+  enabled: false
+  name: tools
+  authorizer: AWS_IAM
+  targets: []

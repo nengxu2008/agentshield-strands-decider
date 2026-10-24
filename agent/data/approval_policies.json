@@ -1,0 +1,11 @@
+[
+ {"policy_id": "AP-FORECAST-EXT", "resource_id": "DOC-CONF-03", "operations": ["send_email", "share_file"], "destination_classes": ["external_business"],
+  "approver_roles": ["data_owner"], "max_label": "CONFIDENTIAL", "ttl_minutes": 15, "single_use": true,
+  "note": "the Finance Director may grant a one-off exception for named business partners"},
+ {"policy_id": "AP-CUSTOMERS-EXT", "resource_id": "DOC-CONF-10", "operations": ["send_email", "share_file"], "destination_classes": ["external_business"],
+  "approver_roles": ["data_owner"], "max_label": "CONFIDENTIAL", "ttl_minutes": 15, "single_use": true},
+ {"policy_id": "AP-CUSTOMERS-EXPORT", "resource_id": "DOC-CONF-10", "operations": ["export_records"], "destination_classes": [null],
+  "approver_roles": ["data_owner"], "max_label": "CONFIDENTIAL", "ttl_minutes": 15, "single_use": true},
+ {"policy_id": "AP-PAYROLL", "resource_id": "DOC-RES-05", "operations": [], "destination_classes": [], "approver_roles": [],
+  "max_label": "RESTRICTED", "ttl_minutes": 0, "single_use": true, "note": "never approvable for egress"}
+]

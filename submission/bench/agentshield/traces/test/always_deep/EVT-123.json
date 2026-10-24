@@ -1,0 +1,211 @@
+{
+ "scenario": {
+  "scenario_id": "EVT-123",
+  "split": "test",
+  "family": "targeted_evidence",
+  "legit": "no",
+  "situation": "Contractor reads the roadmap for a test plan; permission UNKNOWN; IAM says DENY.",
+  "authorization_truth": "DENY",
+  "sensitivity_truth": "CONFIDENTIAL",
+  "risk_severity": "high",
+  "facts_needed_for_policy": [
+   "identity",
+   "permission",
+   "resource_label"
+  ],
+  "facts_available_at_t0": [
+   "identity",
+   "resource_label"
+  ],
+  "source_reliability": "trusted",
+  "minimal_sufficient_evidence_tools": [
+   "CHECK_IAM_PERMISSION"
+  ],
+  "acceptable_extra_evidence": [],
+  "specialist_needed": false,
+  "acceptable_analyzers": [],
+  "safe_actions": [
+   "BLOCK"
+  ],
+  "acceptable_dispositions": [
+   "BLOCK"
+  ],
+  "primary_recommended_route": "FETCH_EVIDENCE",
+  "acceptable_first_routes": [
+   "FETCH_EVIDENCE",
+   "BLOCK"
+  ],
+  "expected_resolution_status": "SUFFICIENT_DENY",
+  "reroute_necessary": false,
+  "expected_enforcement_mode": "inline",
+  "tier0": false
+ },
+ "row": {
+  "arm": "always_deep",
+  "scenario_id": "EVT-123",
+  "split": "test",
+  "family": "targeted_evidence",
+  "legit": "no",
+  "mode": "inline",
+  "risk_severity": "high",
+  "truth": [
+   "BLOCK"
+  ],
+  "disposition": "BLOCK",
+  "acceptable": true,
+  "first_route": "FETCH_EVIDENCE",
+  "first_route_ok": null,
+  "reached_routing": true,
+  "evidence_calls": [
+   "CHECK_IAM_PERMISSION"
+  ],
+  "failed_evidence_calls": [],
+  "analyzer_calls": [],
+  "findings": [],
+  "evidence_ok": true,
+  "analyzer_ok": true,
+  "investigation_ok": true,
+  "routing_ok": true,
+  "unsafe_allow": false,
+  "missed_incident": false,
+  "disrupted": false,
+  "held_ok": false,
+  "decider_calls": 0,
+  "decider_questions": 0,
+  "routing_model_calls": 0,
+  "llm_tokens": 0,
+  "service_ms": 0.059,
+  "wall_ms": 0.2,
+  "stage_ms": {
+   "policy": 0.034,
+   "evidence": 0.018,
+   "resolver": 0.004,
+   "enforcement": 0.003
+  },
+  "throttle_wait_ms": 0.0,
+  "first_pass_resolved": false,
+  "low_confidence": false,
+  "ineligible_proposals": 0,
+  "repeat_suppressed": 0,
+  "route_overrides": [],
+  "vetoes": [],
+  "decider_calls_saved": 0,
+  "decider_calls_after_downstream": 0,
+  "queued_steps_skipped": [],
+  "resolution_status": "SUFFICIENT_DENY",
+  "fallback_reason": null,
+  "tier0": false,
+  "failure_policy": false,
+  "steps": 1,
+  "est_investigation_ms": 50,
+  "cached_decider_calls": 0,
+  "prevented": true
+ },
+ "outcome": {
+  "event_id": "EVT-123",
+  "mode": "inline",
+  "disposition": "BLOCK",
+  "rule_id": "H1",
+  "reason": "verified IAM decision DENY for the pending operation",
+  "tier0": false,
+  "resolution_status": "SUFFICIENT_DENY",
+  "fallback_reason": null,
+  "enforcement": {
+   "integration": "inline_hook_vendor",
+   "internal_action": "BLOCK",
+   "vendor_verdict": "deny",
+   "prevented": true,
+   "outcome_type": "attempted_access",
+   "report_class": "blocked_by_verdict",
+   "remediation": [],
+   "native_policy_effect": null,
+   "note": "denied before the step ran"
+  },
+  "approval_request": null,
+  "advisory": [],
+  "evidence_calls": [
+   "CHECK_IAM_PERMISSION"
+  ],
+  "failed_evidence_calls": [],
+  "analyzer_calls": [],
+  "findings": [],
+  "decider_calls": 0,
+  "decider_questions": 0,
+  "routing_model_calls": 0,
+  "decider_calls_saved": 0,
+  "queued_steps_skipped": [],
+  "decider_calls_after_downstream": 0,
+  "first_pass_resolved": false,
+  "low_confidence": false,
+  "ineligible_proposals": 0,
+  "repeat_suppressed": 0,
+  "route_overrides": [],
+  "vetoes": [],
+  "first_route": "FETCH_EVIDENCE",
+  "steps": 1,
+  "stage_ms": {
+   "policy": 0.034,
+   "evidence": 0.018,
+   "resolver": 0.004,
+   "enforcement": 0.003
+  },
+  "service_ms": 0.059,
+  "wall_ms": 0.16700010746717453,
+  "throttle_wait_ms": 0.0,
+  "llm_tokens": 0,
+  "routing_records": [
+   {
+    "event_id": "EVT-123",
+    "step_index": 0,
+    "eligible_options": [
+     "BLOCK",
+     "FETCH_EVIDENCE",
+     "CHECK_IAM_PERMISSION"
+    ],
+    "decider_selected_option": null,
+    "decider_option_probabilities": null,
+    "effective_option": "CHECK_IAM_PERMISSION",
+    "override_rule": null,
+    "analyzer_or_evidence_tool": null,
+    "deadline_ms_remaining": 19999,
+    "result_evidence_ids": [],
+    "resolution_status": null,
+    "resolution_rule_id": null,
+    "reroute_reason": null,
+    "decider_reinvoked": false
+   },
+   {
+    "event_id": "EVT-123",
+    "step_index": 1,
+    "eligible_options": [
+     "CHECK_IAM_PERMISSION"
+    ],
+    "decider_selected_option": null,
+    "decider_option_probabilities": null,
+    "effective_option": "CHECK_IAM_PERMISSION",
+    "override_rule": null,
+    "analyzer_or_evidence_tool": "CHECK_IAM_PERMISSION",
+    "deadline_ms_remaining": 19999,
+    "result_evidence_ids": [
+     "CHECK_IAM_PERMISSION"
+    ],
+    "resolution_status": "SUFFICIENT_DENY",
+    "resolution_rule_id": "H1",
+    "reroute_reason": null,
+    "decider_reinvoked": false
+   }
+  ],
+  "decision_records": [],
+  "trace": [
+   {
+    "stage": "resolver",
+    "after": "CHECK_IAM_PERMISSION",
+    "status": "SUFFICIENT_DENY",
+    "rule": "H1",
+    "reason": "verified IAM decision DENY for the pending operation"
+   }
+  ],
+  "coverage_notes": [],
+  "frame_calls": []
+ }
+}

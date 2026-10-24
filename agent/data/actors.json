@@ -1,0 +1,14 @@
+[
+ {"actor_id": "u-ana", "name": "Ana", "title": "Marketing Specialist", "kind": "employee", "department": "Marketing", "roles": ["employee"]},
+ {"actor_id": "u-ben", "name": "Ben", "title": "Finance Analyst", "kind": "employee", "department": "Finance", "roles": ["employee"]},
+ {"actor_id": "u-chen", "name": "Chen", "title": "HR Partner", "kind": "employee", "department": "HR", "roles": ["employee"]},
+ {"actor_id": "u-devi", "name": "Devi", "title": "QA Contractor", "kind": "contractor", "department": "Engineering", "roles": ["contractor"]},
+ {"actor_id": "u-eli", "name": "Eli", "title": "Support Engineer", "kind": "employee", "department": "Support", "roles": ["employee"]},
+ {"actor_id": "u-farah", "name": "Farah", "title": "Finance Director", "kind": "employee", "department": "Finance", "roles": ["employee", "data_owner"]},
+ {"actor_id": "u-gus", "name": "Gus", "title": "Head of Product", "kind": "employee", "department": "Product", "roles": ["employee", "data_owner"]},
+ {"actor_id": "u-hana", "name": "Hana", "title": "HR Director", "kind": "employee", "department": "HR", "roles": ["employee", "data_owner"]},
+ {"actor_id": "u-ivan", "name": "Ivan", "title": "Corporate Secretary", "kind": "employee", "department": "Legal", "roles": ["employee", "data_owner"]},
+ {"actor_id": "u-kai", "name": "Kai", "title": "Head of Customer Operations", "kind": "employee", "department": "Support", "roles": ["employee", "data_owner"]},
+ {"actor_id": "u-lee", "name": "Lee", "title": "Head of Marketing", "kind": "employee", "department": "Marketing", "roles": ["employee", "data_owner"]},
+ {"actor_id": "u-sec", "name": "Sam", "title": "Security Reviewer", "kind": "employee", "department": "Security", "roles": ["employee", "security_reviewer"]}
+]

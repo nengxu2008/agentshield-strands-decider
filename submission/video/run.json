@@ -1,0 +1,726 @@
+[
+ {
+  "start": 1.768178939819336,
+  "end": 20.03129506111145,
+  "out": {
+   "reply": "Event EVT-101 was evaluated and allowed by AgentShield. The decision was made via the fast path, with the Strands Decider first pass granting an ALLOW_IF_AUTHORIZED with a probability of 0.93. Despite a 0.32 probability of high or critical harm, the final validation confirmed the allow decision. No additional lookups or analyzers were required, and no approval request was necessary.",
+   "decisions": [
+    {
+     "pattern": "#tool-selection",
+     "stage": "first pass \u00b7 EVT-101",
+     "verdict": "allow",
+     "pick": "ALLOW_IF_AUTHORIZED",
+     "confidence": 0.929,
+     "high_risk": 0.323,
+     "needs_lookup": 0.0,
+     "needs_analysis": 0.0,
+     "decider_ms": 6247,
+     "event_id": "EVT-101",
+     "proposed": "ALLOW_IF_AUTHORIZED",
+     "effective": "ALLOW_IF_AUTHORIZED",
+     "plan": [
+      "ALLOW_IF_AUTHORIZED"
+     ],
+     "eligible": {
+      "next_steps": [
+       "ALLOW_IF_AUTHORIZED",
+       "BLOCK"
+      ],
+      "tools": [],
+      "analyzers": []
+     },
+     "probabilities": {
+      "next_step": {
+       "ALLOW_IF_AUTHORIZED": 0.627,
+       "BLOCK": 0.048,
+       "FETCH_EVIDENCE": 0.109,
+       "ESCALATE_SEMANTIC": 0.121,
+       "REQUIRE_APPROVAL": 0.095
+      },
+      "risk_severity": {
+       "low": 0.359,
+       "moderate": 0.318,
+       "high": 0.198,
+       "critical": 0.125
+      },
+      "evidence_tool": {
+       "CHECK_IAM_PERMISSION": 0.173,
+       "GET_RESOURCE_LABEL": 0.227,
+       "VERIFY_RECIPIENT": 0.036,
+       "GET_PROVENANCE": 0.18,
+       "none": 0.384
+      },
+      "analyzer": {
+       "SEMANTIC_DLP": 0.166,
+       "PROMPT_INJECTION_FORENSICS": 0.215,
+       "SENSITIVE_DERIVATION_REVIEW": 0.054,
+       "none": 0.565
+      }
+     },
+     "low_confidence": false,
+     "ineligible_proposal": false,
+     "repeat_suppressed": [],
+     "veto": null,
+     "override": null,
+     "model": "strands-decider-2b-hobson-v19",
+     "question_set": "agentshield-qs-v2",
+     "questions_asked": 4,
+     "cached": false,
+     "outcome": "ALLOW (ROUTE): fast path: gatekeeper allow, confirmed by final validation",
+     "executed": "ALLOW_IF_AUTHORIZED"
+    }
+   ],
+   "model_id": "us.amazon.nova-pro-v1:0",
+   "latency_ms": 8473,
+   "agent": "AgentShield",
+   "eager": false,
+   "outcomes": [
+    {
+     "event_id": "EVT-101",
+     "outcome": "ALLOW",
+     "meaning": "allowed",
+     "rule": "ROUTE",
+     "reason": "fast path: gatekeeper allow, confirmed by final validation",
+     "path": [
+      "Strands Decider first pass: top eligible pick ALLOW_IF_AUTHORIZED with probability 0.93; probability of high or critical harm 0.32; AgentShield acted on: allow"
+     ],
+     "decider_calls": 1,
+     "lookups": [],
+     "analyzers": [],
+     "prevented": false,
+     "approval_request": null,
+     "advisory": [],
+     "note": "already evaluated in this chat; stored outcome (no new decision)"
+    }
+   ],
+   "approvals": [],
+   "trace": [
+    {
+     "event_id": "EVT-101",
+     "trace": [],
+     "stage_ms": {
+      "policy": 0.113,
+      "routing": 6247.056,
+      "enforcement": 0.017
+     },
+     "routing": [
+      {
+       "event_id": "EVT-101",
+       "step_index": 0,
+       "eligible_options": [
+        "ALLOW_IF_AUTHORIZED",
+        "BLOCK"
+       ],
+       "decider_selected_option": "ALLOW_IF_AUTHORIZED",
+       "decider_option_probabilities": {
+        "ALLOW_IF_AUTHORIZED": 0.627,
+        "BLOCK": 0.048,
+        "FETCH_EVIDENCE": 0.109,
+        "ESCALATE_SEMANTIC": 0.121,
+        "REQUIRE_APPROVAL": 0.095
+       },
+       "effective_option": "ALLOW_IF_AUTHORIZED",
+       "override_rule": null,
+       "analyzer_or_evidence_tool": null,
+       "deadline_ms_remaining": 13752,
+       "result_evidence_ids": [],
+       "resolution_status": null,
+       "resolution_rule_id": null,
+       "reroute_reason": null,
+       "decider_reinvoked": false
+      }
+     ]
+    }
+   ],
+   "decider_model": "strands-decider-2b-hobson-v19",
+   "question_set": "agentshield-qs-v2",
+   "served_by": "Amazon Bedrock AgentCore Runtime"
+  },
+  "say": "Evaluate EVT-101",
+  "narrate": "A marketing agent wants to read the public brand guide for the newsletter it is writing. Everything about it is already verified."
+ },
+ {
+  "start": 20.031301021575928,
+  "end": 32.2151939868927,
+  "out": {
+   "reply": "Event EVT-105 was evaluated and blocked by AgentShield before it could be executed. This action was taken due to the event involving CONFIDENTIAL or RESTRICTED data being sent to a personal or blocklisted destination. The Strands Decider first pass selected FETCH_EVIDENCE with a probability of 0.35, indicating a low-confidence rule. The probability of high or critical harm was 0.53. AgentShield acted on this by investigating and verifying the recipient, which led to a sufficient deny resolution by the resolver. No additional analyzers were required, and the event was effectively prevented.",
+   "decisions": [
+    {
+     "pattern": "#tool-selection",
+     "stage": "first pass \u00b7 EVT-105",
+     "verdict": "investigate: verify recipient then semantic dlp (fetch evidence at 0.35 was not decisive)",
+     "pick": "FETCH_EVIDENCE",
+     "confidence": 0.35,
+     "high_risk": 0.525,
+     "needs_lookup": 0.897,
+     "needs_analysis": 0.742,
+     "decider_ms": 7382,
+     "event_id": "EVT-105",
+     "proposed": "FETCH_EVIDENCE",
+     "effective": "FETCH_EVIDENCE",
+     "plan": [
+      "VERIFY_RECIPIENT",
+      "SEMANTIC_DLP"
+     ],
+     "eligible": {
+      "next_steps": [
+       "BLOCK",
+       "FETCH_EVIDENCE",
+       "ESCALATE_SEMANTIC"
+      ],
+      "tools": [
+       "VERIFY_RECIPIENT"
+      ],
+      "analyzers": [
+       "SEMANTIC_DLP",
+       "SENSITIVE_DERIVATION_REVIEW"
+      ]
+     },
+     "probabilities": {
+      "next_step": {
+       "ALLOW_IF_AUTHORIZED": 0.183,
+       "BLOCK": 0.253,
+       "FETCH_EVIDENCE": 0.255,
+       "ESCALATE_SEMANTIC": 0.222,
+       "REQUIRE_APPROVAL": 0.088
+      },
+      "risk_severity": {
+       "low": 0.188,
+       "moderate": 0.287,
+       "high": 0.325,
+       "critical": 0.201
+      },
+      "evidence_tool": {
+       "CHECK_IAM_PERMISSION": 0.051,
+       "GET_RESOURCE_LABEL": 0.124,
+       "VERIFY_RECIPIENT": 0.684,
+       "GET_PROVENANCE": 0.062,
+       "none": 0.079
+      },
+      "analyzer": {
+       "SEMANTIC_DLP": 0.35,
+       "PROMPT_INJECTION_FORENSICS": 0.08,
+       "SENSITIVE_DERIVATION_REVIEW": 0.333,
+       "none": 0.238
+      }
+     },
+     "low_confidence": true,
+     "ineligible_proposal": false,
+     "repeat_suppressed": [],
+     "veto": null,
+     "override": null,
+     "model": "strands-decider-2b-hobson-v19",
+     "question_set": "agentshield-qs-v2",
+     "questions_asked": 4,
+     "cached": false,
+     "outcome": "BLOCK (H3): CONFIDENTIAL or RESTRICTED data to a personal or blocklisted destination",
+     "executed": "FETCH_EVIDENCE"
+    }
+   ],
+   "model_id": "us.amazon.nova-pro-v1:0",
+   "latency_ms": 9714,
+   "agent": "AgentShield",
+   "eager": false,
+   "outcomes": [
+    {
+     "event_id": "EVT-105",
+     "outcome": "BLOCK",
+     "meaning": "blocked before it ran",
+     "rule": "H3",
+     "reason": "CONFIDENTIAL or RESTRICTED data to a personal or blocklisted destination",
+     "path": [
+      "Strands Decider first pass: top eligible pick FETCH_EVIDENCE with probability 0.35; probability of high or critical harm 0.53; AgentShield acted on: investigate: verify recipient then semantic dlp (fetch evidence at 0.35 was not decisive) (low-confidence rule)",
+      "VERIFY_RECIPIENT -> resolver SUFFICIENT_DENY"
+     ],
+     "decider_calls": 1,
+     "lookups": [
+      "VERIFY_RECIPIENT"
+     ],
+     "analyzers": [],
+     "prevented": true,
+     "approval_request": null,
+     "advisory": [],
+     "note": "already evaluated in this chat; stored outcome (no new decision)"
+    }
+   ],
+   "approvals": [],
+   "trace": [
+    {
+     "event_id": "EVT-105",
+     "trace": [
+      {
+       "stage": "resolver",
+       "after": "VERIFY_RECIPIENT",
+       "status": "SUFFICIENT_DENY",
+       "rule": "H3",
+       "reason": "CONFIDENTIAL or RESTRICTED data to a personal or blocklisted destination"
+      }
+     ],
+     "stage_ms": {
+      "policy": 0.182,
+      "routing": 7382.343,
+      "evidence": 0.057,
+      "resolver": 0.021,
+      "enforcement": 0.017
+     },
+     "routing": [
+      {
+       "event_id": "EVT-105",
+       "step_index": 0,
+       "eligible_options": [
+        "BLOCK",
+        "FETCH_EVIDENCE",
+        "ESCALATE_SEMANTIC",
+        "VERIFY_RECIPIENT",
+        "SEMANTIC_DLP",
+        "SENSITIVE_DERIVATION_REVIEW"
+       ],
+       "decider_selected_option": "FETCH_EVIDENCE",
+       "decider_option_probabilities": {
+        "ALLOW_IF_AUTHORIZED": 0.183,
+        "BLOCK": 0.253,
+        "FETCH_EVIDENCE": 0.255,
+        "ESCALATE_SEMANTIC": 0.222,
+        "REQUIRE_APPROVAL": 0.088
+       },
+       "effective_option": "VERIFY_RECIPIENT+SEMANTIC_DLP",
+       "override_rule": null,
+       "analyzer_or_evidence_tool": null,
+       "deadline_ms_remaining": 12617,
+       "result_evidence_ids": [],
+       "resolution_status": null,
+       "resolution_rule_id": null,
+       "reroute_reason": null,
+       "decider_reinvoked": false
+      },
+      {
+       "event_id": "EVT-105",
+       "step_index": 1,
+       "eligible_options": [
+        "VERIFY_RECIPIENT",
+        "SEMANTIC_DLP",
+        "SENSITIVE_DERIVATION_REVIEW"
+       ],
+       "decider_selected_option": null,
+       "decider_option_probabilities": null,
+       "effective_option": "VERIFY_RECIPIENT",
+       "override_rule": null,
+       "analyzer_or_evidence_tool": "VERIFY_RECIPIENT",
+       "deadline_ms_remaining": 12617,
+       "result_evidence_ids": [
+        "VERIFY_RECIPIENT"
+       ],
+       "resolution_status": "SUFFICIENT_DENY",
+       "resolution_rule_id": "H3",
+       "reroute_reason": null,
+       "decider_reinvoked": false
+      }
+     ]
+    }
+   ],
+   "decider_model": "strands-decider-2b-hobson-v19",
+   "question_set": "agentshield-qs-v2",
+   "served_by": "Amazon Bedrock AgentCore Runtime"
+  },
+  "say": "Evaluate EVT-105",
+  "narrate": "A finance agent is emailing a confidential forecast summary to an outside adviser whose address nobody has checked yet."
+ },
+ {
+  "start": 32.21520209312439,
+  "end": 46.18298816680908,
+  "out": {
+   "reply": "Event EVT-109 was evaluated and blocked by AgentShield before it could be executed. The block was due to the SEMANTIC_DLP analyzer detecting confidential content, which mapped to a deny action under rule fm-2026.10:CONFIDENTIAL_CONTENT_DETECTED. The Strands Decider first pass suggested ALLOW_IF_AUTHORIZED with a probability of 0.54, but this was not decisive. The probability of high or critical harm was 0.37. AgentShield acted on this by investigating with the semantic DLP, which confirmed the detection of confidential content, leading to a sufficient deny resolution by the resolver. No additional lookups were required, and the event was effectively prevented.",
+   "decisions": [
+    {
+     "pattern": "#tool-selection",
+     "stage": "first pass \u00b7 EVT-109",
+     "verdict": "investigate: semantic dlp (allow if authorized at 0.54 was not decisive)",
+     "pick": "ALLOW_IF_AUTHORIZED",
+     "confidence": 0.538,
+     "high_risk": 0.371,
+     "needs_lookup": 0.0,
+     "needs_analysis": 0.389,
+     "decider_ms": 6853,
+     "event_id": "EVT-109",
+     "proposed": "ALLOW_IF_AUTHORIZED",
+     "effective": "ESCALATE_SEMANTIC",
+     "plan": [
+      "SEMANTIC_DLP"
+     ],
+     "eligible": {
+      "next_steps": [
+       "ALLOW_IF_AUTHORIZED",
+       "BLOCK",
+       "ESCALATE_SEMANTIC"
+      ],
+      "tools": [],
+      "analyzers": [
+       "SEMANTIC_DLP"
+      ]
+     },
+     "probabilities": {
+      "next_step": {
+       "ALLOW_IF_AUTHORIZED": 0.379,
+       "BLOCK": 0.085,
+       "FETCH_EVIDENCE": 0.225,
+       "ESCALATE_SEMANTIC": 0.24,
+       "REQUIRE_APPROVAL": 0.071
+      },
+      "risk_severity": {
+       "low": 0.303,
+       "moderate": 0.326,
+       "high": 0.227,
+       "critical": 0.145
+      },
+      "evidence_tool": {
+       "CHECK_IAM_PERMISSION": 0.128,
+       "GET_RESOURCE_LABEL": 0.186,
+       "VERIFY_RECIPIENT": 0.108,
+       "GET_PROVENANCE": 0.153,
+       "none": 0.425
+      },
+      "analyzer": {
+       "SEMANTIC_DLP": 0.281,
+       "PROMPT_INJECTION_FORENSICS": 0.221,
+       "SENSITIVE_DERIVATION_REVIEW": 0.056,
+       "none": 0.441
+      }
+     },
+     "low_confidence": true,
+     "ineligible_proposal": false,
+     "repeat_suppressed": [],
+     "veto": null,
+     "override": null,
+     "model": "strands-decider-2b-hobson-v19",
+     "question_set": "agentshield-qs-v2",
+     "questions_asked": 4,
+     "cached": false,
+     "outcome": "BLOCK (fm-2026.10:CONFIDENTIAL_CONTENT_DETECTED): SEMANTIC_DLP reported CONFIDENTIAL_CONTENT_DETECTED (mapped to DENY)",
+     "executed": "ESCALATE_SEMANTIC"
+    }
+   ],
+   "model_id": "us.amazon.nova-pro-v1:0",
+   "latency_ms": 11494,
+   "agent": "AgentShield",
+   "eager": false,
+   "outcomes": [
+    {
+     "event_id": "EVT-109",
+     "outcome": "BLOCK",
+     "meaning": "blocked before it ran",
+     "rule": "fm-2026.10:CONFIDENTIAL_CONTENT_DETECTED",
+     "reason": "SEMANTIC_DLP reported CONFIDENTIAL_CONTENT_DETECTED (mapped to DENY)",
+     "path": [
+      "Strands Decider first pass: top eligible pick ALLOW_IF_AUTHORIZED with probability 0.54; probability of high or critical harm 0.37; AgentShield acted on: investigate: semantic dlp (allow if authorized at 0.54 was not decisive) (low-confidence rule)",
+      "SEMANTIC_DLP -> resolver SUFFICIENT_DENY",
+      "analyzer SEMANTIC_DLP: CONFIDENTIAL_CONTENT_DETECTED (evidence, not authorization)"
+     ],
+     "decider_calls": 1,
+     "lookups": [],
+     "analyzers": [
+      "SEMANTIC_DLP"
+     ],
+     "prevented": true,
+     "approval_request": null,
+     "advisory": [],
+     "note": "already evaluated in this chat; stored outcome (no new decision)"
+    }
+   ],
+   "approvals": [],
+   "trace": [
+    {
+     "event_id": "EVT-109",
+     "trace": [
+      {
+       "stage": "resolver",
+       "after": "SEMANTIC_DLP",
+       "status": "SUFFICIENT_DENY",
+       "rule": "fm-2026.10:CONFIDENTIAL_CONTENT_DETECTED",
+       "reason": "SEMANTIC_DLP reported CONFIDENTIAL_CONTENT_DETECTED (mapped to DENY)"
+      }
+     ],
+     "stage_ms": {
+      "policy": 0.153,
+      "routing": 6852.504,
+      "analyzer": 1651.749,
+      "resolver": 0.039,
+      "enforcement": 0.019
+     },
+     "routing": [
+      {
+       "event_id": "EVT-109",
+       "step_index": 0,
+       "eligible_options": [
+        "ALLOW_IF_AUTHORIZED",
+        "BLOCK",
+        "ESCALATE_SEMANTIC",
+        "SEMANTIC_DLP"
+       ],
+       "decider_selected_option": "ALLOW_IF_AUTHORIZED",
+       "decider_option_probabilities": {
+        "ALLOW_IF_AUTHORIZED": 0.379,
+        "BLOCK": 0.085,
+        "FETCH_EVIDENCE": 0.225,
+        "ESCALATE_SEMANTIC": 0.24,
+        "REQUIRE_APPROVAL": 0.071
+       },
+       "effective_option": "SEMANTIC_DLP",
+       "override_rule": null,
+       "analyzer_or_evidence_tool": null,
+       "deadline_ms_remaining": 13147,
+       "result_evidence_ids": [],
+       "resolution_status": null,
+       "resolution_rule_id": null,
+       "reroute_reason": null,
+       "decider_reinvoked": false
+      },
+      {
+       "event_id": "EVT-109",
+       "step_index": 1,
+       "eligible_options": [
+        "SEMANTIC_DLP"
+       ],
+       "decider_selected_option": null,
+       "decider_option_probabilities": null,
+       "effective_option": "SEMANTIC_DLP",
+       "override_rule": null,
+       "analyzer_or_evidence_tool": "SEMANTIC_DLP",
+       "deadline_ms_remaining": 11495,
+       "result_evidence_ids": [
+        "SEMANTIC_DLP"
+       ],
+       "resolution_status": "SUFFICIENT_DENY",
+       "resolution_rule_id": "fm-2026.10:CONFIDENTIAL_CONTENT_DETECTED",
+       "reroute_reason": null,
+       "decider_reinvoked": false
+      }
+     ]
+    }
+   ],
+   "decider_model": "strands-decider-2b-hobson-v19",
+   "question_set": "agentshield-qs-v2",
+   "served_by": "Amazon Bedrock AgentCore Runtime"
+  },
+  "say": "Evaluate EVT-109",
+  "narrate": "An agent sends an internal partner FAQ to an approved partner. The facts are clean, but the wording sounds like the unreleased roadmap."
+ },
+ {
+  "start": 46.18299102783203,
+  "end": 60.414355993270874,
+  "out": {
+   "reply": "Event EVT-114 was evaluated and blocked by AgentShield before it could be executed. The block was due to the SENSITIVE_DERIVATION_REVIEW analyzer detecting confidential derivation, which mapped to a deny action under rule fm-2026.10:CONFIDENTIAL_DERIVATION_DETECTED. The Strands Decider first pass suggested FETCH_EVIDENCE with a probability of 0.39, but this was not decisive. The probability of high or critical harm was 0.53. AgentShield acted on this by investigating the provenance and conducting a sensitive derivation review, which confirmed the detection of confidential derivation, leading to a sufficient deny resolution by the resolver. The GET_PROVENANCE lookup indicated a need for another specialist, but the event was effectively prevented.",
+   "decisions": [
+    {
+     "pattern": "#tool-selection",
+     "stage": "first pass \u00b7 EVT-114",
+     "verdict": "investigate: get provenance then sensitive derivation review (fetch evidence at 0.39 was not decisive)",
+     "pick": "FETCH_EVIDENCE",
+     "confidence": 0.39,
+     "high_risk": 0.53,
+     "needs_lookup": 0.862,
+     "needs_analysis": 0.837,
+     "decider_ms": 7446,
+     "event_id": "EVT-114",
+     "proposed": "FETCH_EVIDENCE",
+     "effective": "FETCH_EVIDENCE",
+     "plan": [
+      "GET_PROVENANCE",
+      "SENSITIVE_DERIVATION_REVIEW"
+     ],
+     "eligible": {
+      "next_steps": [
+       "BLOCK",
+       "FETCH_EVIDENCE",
+       "ESCALATE_SEMANTIC"
+      ],
+      "tools": [
+       "GET_PROVENANCE"
+      ],
+      "analyzers": [
+       "SEMANTIC_DLP",
+       "SENSITIVE_DERIVATION_REVIEW"
+      ]
+     },
+     "probabilities": {
+      "next_step": {
+       "ALLOW_IF_AUTHORIZED": 0.112,
+       "BLOCK": 0.192,
+       "FETCH_EVIDENCE": 0.305,
+       "ESCALATE_SEMANTIC": 0.285,
+       "REQUIRE_APPROVAL": 0.106
+      },
+      "risk_severity": {
+       "low": 0.186,
+       "moderate": 0.283,
+       "high": 0.325,
+       "critical": 0.205
+      },
+      "evidence_tool": {
+       "CHECK_IAM_PERMISSION": 0.069,
+       "GET_RESOURCE_LABEL": 0.455,
+       "VERIFY_RECIPIENT": 0.05,
+       "GET_PROVENANCE": 0.367,
+       "none": 0.059
+      },
+      "analyzer": {
+       "SEMANTIC_DLP": 0.317,
+       "PROMPT_INJECTION_FORENSICS": 0.09,
+       "SENSITIVE_DERIVATION_REVIEW": 0.444,
+       "none": 0.149
+      }
+     },
+     "low_confidence": true,
+     "ineligible_proposal": false,
+     "repeat_suppressed": [],
+     "veto": null,
+     "override": null,
+     "model": "strands-decider-2b-hobson-v19",
+     "question_set": "agentshield-qs-v2",
+     "questions_asked": 4,
+     "cached": false,
+     "outcome": "BLOCK (fm-2026.10:CONFIDENTIAL_DERIVATION_DETECTED): SENSITIVE_DERIVATION_REVIEW reported CONFIDENTIAL_DERIVATION_DETECTED (mapped to DENY)",
+     "executed": "FETCH_EVIDENCE"
+    }
+   ],
+   "model_id": "us.amazon.nova-pro-v1:0",
+   "latency_ms": 11763,
+   "agent": "AgentShield",
+   "eager": false,
+   "outcomes": [
+    {
+     "event_id": "EVT-114",
+     "outcome": "BLOCK",
+     "meaning": "blocked before it ran",
+     "rule": "fm-2026.10:CONFIDENTIAL_DERIVATION_DETECTED",
+     "reason": "SENSITIVE_DERIVATION_REVIEW reported CONFIDENTIAL_DERIVATION_DETECTED (mapped to DENY)",
+     "path": [
+      "Strands Decider first pass: top eligible pick FETCH_EVIDENCE with probability 0.39; probability of high or critical harm 0.53; AgentShield acted on: investigate: get provenance then sensitive derivation review (fetch evidence at 0.39 was not decisive) (low-confidence rule)",
+      "GET_PROVENANCE -> resolver NEEDS_OTHER_SPECIALIST",
+      "SENSITIVE_DERIVATION_REVIEW -> resolver SUFFICIENT_DENY",
+      "analyzer SENSITIVE_DERIVATION_REVIEW: CONFIDENTIAL_DERIVATION_DETECTED (evidence, not authorization)"
+     ],
+     "decider_calls": 1,
+     "lookups": [
+      "GET_PROVENANCE"
+     ],
+     "analyzers": [
+      "SENSITIVE_DERIVATION_REVIEW"
+     ],
+     "prevented": true,
+     "approval_request": null,
+     "advisory": [],
+     "note": "already evaluated in this chat; stored outcome (no new decision)"
+    }
+   ],
+   "approvals": [],
+   "trace": [
+    {
+     "event_id": "EVT-114",
+     "trace": [
+      {
+       "stage": "resolver",
+       "after": "GET_PROVENANCE",
+       "status": "NEEDS_OTHER_SPECIALIST",
+       "rule": "LG1",
+       "reason": "artifact_label, lineage cannot be established by a lookup; only an analyzer deny can add evidence (analyzer findings never set facts)"
+      },
+      {
+       "stage": "resolver",
+       "after": "SENSITIVE_DERIVATION_REVIEW",
+       "status": "SUFFICIENT_DENY",
+       "rule": "fm-2026.10:CONFIDENTIAL_DERIVATION_DETECTED",
+       "reason": "SENSITIVE_DERIVATION_REVIEW reported CONFIDENTIAL_DERIVATION_DETECTED (mapped to DENY)"
+      }
+     ],
+     "stage_ms": {
+      "policy": 0.189,
+      "routing": 7445.501,
+      "evidence": 0.083,
+      "resolver": 0.097,
+      "analyzer": 1347.622,
+      "enforcement": 0.017
+     },
+     "routing": [
+      {
+       "event_id": "EVT-114",
+       "step_index": 0,
+       "eligible_options": [
+        "BLOCK",
+        "FETCH_EVIDENCE",
+        "ESCALATE_SEMANTIC",
+        "GET_PROVENANCE",
+        "SEMANTIC_DLP",
+        "SENSITIVE_DERIVATION_REVIEW"
+       ],
+       "decider_selected_option": "FETCH_EVIDENCE",
+       "decider_option_probabilities": {
+        "ALLOW_IF_AUTHORIZED": 0.112,
+        "BLOCK": 0.192,
+        "FETCH_EVIDENCE": 0.305,
+        "ESCALATE_SEMANTIC": 0.285,
+        "REQUIRE_APPROVAL": 0.106
+       },
+       "effective_option": "GET_PROVENANCE+SENSITIVE_DERIVATION_REVIEW",
+       "override_rule": null,
+       "analyzer_or_evidence_tool": null,
+       "deadline_ms_remaining": 12554,
+       "result_evidence_ids": [],
+       "resolution_status": null,
+       "resolution_rule_id": null,
+       "reroute_reason": null,
+       "decider_reinvoked": false
+      },
+      {
+       "event_id": "EVT-114",
+       "step_index": 1,
+       "eligible_options": [
+        "GET_PROVENANCE",
+        "SEMANTIC_DLP",
+        "SENSITIVE_DERIVATION_REVIEW"
+       ],
+       "decider_selected_option": null,
+       "decider_option_probabilities": null,
+       "effective_option": "GET_PROVENANCE",
+       "override_rule": null,
+       "analyzer_or_evidence_tool": "GET_PROVENANCE",
+       "deadline_ms_remaining": 12554,
+       "result_evidence_ids": [
+        "GET_PROVENANCE"
+       ],
+       "resolution_status": "NEEDS_OTHER_SPECIALIST",
+       "resolution_rule_id": "LG1",
+       "reroute_reason": null,
+       "decider_reinvoked": false
+      },
+      {
+       "event_id": "EVT-114",
+       "step_index": 2,
+       "eligible_options": [
+        "SEMANTIC_DLP",
+        "SENSITIVE_DERIVATION_REVIEW"
+       ],
+       "decider_selected_option": null,
+       "decider_option_probabilities": null,
+       "effective_option": "SENSITIVE_DERIVATION_REVIEW",
+       "override_rule": null,
+       "analyzer_or_evidence_tool": "SENSITIVE_DERIVATION_REVIEW",
+       "deadline_ms_remaining": 11206,
+       "result_evidence_ids": [
+        "SENSITIVE_DERIVATION_REVIEW"
+       ],
+       "resolution_status": "SUFFICIENT_DENY",
+       "resolution_rule_id": "fm-2026.10:CONFIDENTIAL_DERIVATION_DETECTED",
+       "reroute_reason": null,
+       "decider_reinvoked": false
+      }
+     ]
+    }
+   ],
+   "decider_model": "strands-decider-2b-hobson-v19",
+   "question_set": "agentshield-qs-v2",
+   "served_by": "Amazon Bedrock AgentCore Runtime"
+  },
+  "say": "Evaluate EVT-114",
+  "narrate": "A partner briefing built from an internal FAQ plus pasted text of unknown origin is about to go out, and it mentions a leadership decision."
+ }
+]

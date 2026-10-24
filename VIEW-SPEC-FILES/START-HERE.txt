@@ -1,0 +1,5 @@
+The authoritative Kiro specification files live in .kiro/specs/agentshield/ (hidden in macOS Finder).
+
+Press Command + Shift + . in Finder to reveal hidden folders.
+
+For convenience, visible copies of the four specification files are also in VIEW-SPEC-FILES/. Use the .kiro directory as the authoritative version for Kiro.

@@ -1,0 +1,731 @@
+{
+ "decider_model": "strands-decider-2b-hobson-v19",
+ "rows": [
+  {
+   "i": 0,
+   "expected": {
+    "next_step": "FETCH_EVIDENCE",
+    "risk_severity": "high",
+    "evidence_tool": "CHECK_IAM_PERMISSION",
+    "analyzer": "none"
+   },
+   "decider": {
+    "next_step": {
+     "label": "FETCH_EVIDENCE",
+     "confidence": 0.3104
+    },
+    "risk_severity": {
+     "label": "moderate",
+     "confidence": 0.3726
+    },
+    "evidence_tool": {
+     "label": "GET_RESOURCE_LABEL",
+     "confidence": 0.4101
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 0.4108
+    }
+   },
+   "decider_ms": 6414.620624855161,
+   "decider_server_ms": 6221.6,
+   "llm": {
+    "next_step": {
+     "label": "FETCH_EVIDENCE",
+     "confidence": 0.9
+    },
+    "risk_severity": {
+     "label": "moderate",
+     "confidence": 0.8
+    },
+    "evidence_tool": {
+     "label": "CHECK_IAM_PERMISSION",
+     "confidence": 0.9
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 0.9
+    }
+   },
+   "llm_ms": 2272.6481249555945,
+   "llm_cost": 0.0020936
+  },
+  {
+   "i": 1,
+   "expected": {
+    "next_step": "FETCH_EVIDENCE",
+    "risk_severity": "moderate",
+    "evidence_tool": "GET_RESOURCE_LABEL",
+    "analyzer": "none"
+   },
+   "decider": {
+    "next_step": {
+     "label": "FETCH_EVIDENCE",
+     "confidence": 0.4144
+    },
+    "risk_severity": {
+     "label": "moderate",
+     "confidence": 0.3845
+    },
+    "evidence_tool": {
+     "label": "GET_RESOURCE_LABEL",
+     "confidence": 0.7166
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 0.6329
+    }
+   },
+   "decider_ms": 6082.684708293527,
+   "decider_server_ms": 5924.7,
+   "llm": {
+    "next_step": {
+     "label": "FETCH_EVIDENCE",
+     "confidence": 0.9
+    },
+    "risk_severity": {
+     "label": "moderate",
+     "confidence": 0.8
+    },
+    "evidence_tool": {
+     "label": "GET_RESOURCE_LABEL",
+     "confidence": 0.9
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 0.9
+    }
+   },
+   "llm_ms": 2317.3524998128414,
+   "llm_cost": 0.0021024
+  },
+  {
+   "i": 2,
+   "expected": {
+    "next_step": "BLOCK",
+    "risk_severity": "high",
+    "evidence_tool": "none",
+    "analyzer": "none"
+   },
+   "decider": {
+    "next_step": {
+     "label": "ALLOW_IF_AUTHORIZED",
+     "confidence": 0.3792
+    },
+    "risk_severity": {
+     "label": "high",
+     "confidence": 0.3509
+    },
+    "evidence_tool": {
+     "label": "none",
+     "confidence": 0.4353
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 0.5172
+    }
+   },
+   "decider_ms": 6348.685374949127,
+   "decider_server_ms": 6244.7,
+   "llm": {
+    "next_step": {
+     "label": "REQUIRE_APPROVAL",
+     "confidence": 0.95
+    },
+    "risk_severity": {
+     "label": "critical",
+     "confidence": 0.95
+    },
+    "evidence_tool": {
+     "label": "none",
+     "confidence": 1.0
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 1987.6699172891676,
+   "llm_cost": 0.0022192
+  },
+  {
+   "i": 3,
+   "expected": {
+    "next_step": "FETCH_EVIDENCE",
+    "risk_severity": "high",
+    "evidence_tool": "VERIFY_RECIPIENT",
+    "analyzer": "none"
+   },
+   "decider": {
+    "next_step": {
+     "label": "BLOCK",
+     "confidence": 0.3315
+    },
+    "risk_severity": {
+     "label": "high",
+     "confidence": 0.3299
+    },
+    "evidence_tool": {
+     "label": "VERIFY_RECIPIENT",
+     "confidence": 0.7068
+    },
+    "analyzer": {
+     "label": "SEMANTIC_DLP",
+     "confidence": 0.3609
+    }
+   },
+   "decider_ms": 8876.063665840775,
+   "decider_server_ms": 8780.2,
+   "llm": {
+    "next_step": {
+     "label": "FETCH_EVIDENCE",
+     "confidence": 1.0
+    },
+    "risk_severity": {
+     "label": "high",
+     "confidence": 1.0
+    },
+    "evidence_tool": {
+     "label": "VERIFY_RECIPIENT",
+     "confidence": 1.0
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 1789.6801251918077,
+   "llm_cost": 0.0022608000000000003
+  },
+  {
+   "i": 4,
+   "expected": {
+    "risk_severity": "high",
+    "evidence_tool": "none",
+    "analyzer": "PROMPT_INJECTION_FORENSICS"
+   },
+   "decider": {
+    "risk_severity": {
+     "label": "low",
+     "confidence": 0.3755
+    },
+    "evidence_tool": {
+     "label": "none",
+     "confidence": 0.6498
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 0.4264
+    }
+   },
+   "decider_ms": 6391.720917075872,
+   "decider_server_ms": 6221.8,
+   "llm": {
+    "risk_severity": {
+     "label": "low",
+     "confidence": 1.0
+    },
+    "evidence_tool": {
+     "label": "none",
+     "confidence": 1.0
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 1676.9570000469685,
+   "llm_cost": 0.0019512000000000002
+  },
+  {
+   "i": 5,
+   "expected": {
+    "next_step": "ESCALATE_SEMANTIC",
+    "risk_severity": "moderate",
+    "evidence_tool": "none",
+    "analyzer": "SEMANTIC_DLP"
+   },
+   "decider": {
+    "next_step": {
+     "label": "ALLOW_IF_AUTHORIZED",
+     "confidence": 0.4434
+    },
+    "risk_severity": {
+     "label": "moderate",
+     "confidence": 0.3346
+    },
+    "evidence_tool": {
+     "label": "none",
+     "confidence": 0.3974
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 0.4394
+    }
+   },
+   "decider_ms": 13081.711291801184,
+   "decider_server_ms": 12986.4,
+   "llm": {
+    "next_step": {
+     "label": "ALLOW_IF_AUTHORIZED",
+     "confidence": 1.0
+    },
+    "risk_severity": {
+     "label": "low",
+     "confidence": 1.0
+    },
+    "evidence_tool": {
+     "label": "none",
+     "confidence": 1.0
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 1789.4792091101408,
+   "llm_cost": 0.0021208
+  },
+  {
+   "i": 6,
+   "expected": {
+    "next_step": "FETCH_EVIDENCE",
+    "risk_severity": "high",
+    "analyzer": "SEMANTIC_DLP"
+   },
+   "decider": {
+    "next_step": {
+     "label": "ESCALATE_SEMANTIC",
+     "confidence": 0.388
+    },
+    "risk_severity": {
+     "label": "high",
+     "confidence": 0.3369
+    },
+    "analyzer": {
+     "label": "SEMANTIC_DLP",
+     "confidence": 0.3922
+    }
+   },
+   "decider_ms": 6824.205916840583,
+   "decider_server_ms": 6722.2,
+   "llm": {
+    "next_step": {
+     "label": "FETCH_EVIDENCE",
+     "confidence": 0.9
+    },
+    "risk_severity": {
+     "label": "high",
+     "confidence": 0.9
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 0.9
+    }
+   },
+   "llm_ms": 1691.3402499631047,
+   "llm_cost": 0.0019592
+  },
+  {
+   "i": 7,
+   "expected": {
+    "analyzer": "SEMANTIC_DLP"
+   },
+   "decider": {
+    "analyzer": {
+     "label": "SEMANTIC_DLP",
+     "confidence": 0.4023
+    }
+   },
+   "decider_ms": 4195.65266603604,
+   "decider_server_ms": 4093.4,
+   "llm": {
+    "analyzer": {
+     "label": "SENSITIVE_DERIVATION_REVIEW",
+     "confidence": 0.95
+    }
+   },
+   "llm_ms": 2655.452750157565,
+   "llm_cost": 0.0018984000000000002
+  },
+  {
+   "i": 8,
+   "expected": {
+    "next_step": "ESCALATE_SEMANTIC",
+    "evidence_tool": "none",
+    "analyzer": "SEMANTIC_DLP"
+   },
+   "decider": {
+    "next_step": {
+     "label": "FETCH_EVIDENCE",
+     "confidence": 0.4288
+    },
+    "evidence_tool": {
+     "label": "GET_RESOURCE_LABEL",
+     "confidence": 0.4493
+    },
+    "analyzer": {
+     "label": "SENSITIVE_DERIVATION_REVIEW",
+     "confidence": 0.4056
+    }
+   },
+   "decider_ms": 7230.355250183493,
+   "decider_server_ms": 7132.2,
+   "llm": {
+    "next_step": {
+     "label": "ESCALATE_SEMANTIC",
+     "confidence": 0.9
+    },
+    "evidence_tool": {
+     "label": "none",
+     "confidence": 1.0
+    },
+    "analyzer": {
+     "label": "SENSITIVE_DERIVATION_REVIEW",
+     "confidence": 0.9
+    }
+   },
+   "llm_ms": 2993.280792143196,
+   "llm_cost": 0.002236
+  },
+  {
+   "i": 9,
+   "expected": {
+    "next_step": "BLOCK",
+    "risk_severity": "moderate",
+    "evidence_tool": "none",
+    "analyzer": "none"
+   },
+   "decider": {
+    "next_step": {
+     "label": "FETCH_EVIDENCE",
+     "confidence": 0.4773
+    },
+    "risk_severity": {
+     "label": "moderate",
+     "confidence": 0.3386
+    },
+    "evidence_tool": {
+     "label": "CHECK_IAM_PERMISSION",
+     "confidence": 0.3264
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 0.4884
+    }
+   },
+   "decider_ms": 7268.955499865115,
+   "decider_server_ms": 7171.6,
+   "llm": {
+    "next_step": {
+     "label": "ESCALATE_SEMANTIC",
+     "confidence": 0.9
+    },
+    "risk_severity": {
+     "label": "low",
+     "confidence": 0.9
+    },
+    "evidence_tool": {
+     "label": "none",
+     "confidence": 0.9
+    },
+    "analyzer": {
+     "label": "SEMANTIC_DLP",
+     "confidence": 0.9
+    }
+   },
+   "llm_ms": 1934.2568330466747,
+   "llm_cost": 0.0022128
+  },
+  {
+   "i": 10,
+   "expected": {
+    "next_step": "ALLOW_IF_AUTHORIZED",
+    "risk_severity": "low",
+    "evidence_tool": "none",
+    "analyzer": "none"
+   },
+   "decider": {
+    "next_step": {
+     "label": "ALLOW_IF_AUTHORIZED",
+     "confidence": 0.7441
+    },
+    "risk_severity": {
+     "label": "low",
+     "confidence": 0.3738
+    },
+    "evidence_tool": {
+     "label": "none",
+     "confidence": 0.4946
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 0.6905
+    }
+   },
+   "decider_ms": 6035.370832774788,
+   "decider_server_ms": 5899.5,
+   "llm": {
+    "next_step": {
+     "label": "ALLOW_IF_AUTHORIZED",
+     "confidence": 1.0
+    },
+    "risk_severity": {
+     "label": "low",
+     "confidence": 1.0
+    },
+    "evidence_tool": {
+     "label": "none",
+     "confidence": 1.0
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 2237.1236248873174,
+   "llm_cost": 0.0021944
+  },
+  {
+   "i": 11,
+   "expected": {
+    "next_step": "ALLOW_IF_AUTHORIZED",
+    "risk_severity": "low",
+    "evidence_tool": "none",
+    "analyzer": "none"
+   },
+   "decider": {
+    "next_step": {
+     "label": "ALLOW_IF_AUTHORIZED",
+     "confidence": 0.6878
+    },
+    "risk_severity": {
+     "label": "moderate",
+     "confidence": 0.3893
+    },
+    "evidence_tool": {
+     "label": "none",
+     "confidence": 0.4178
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 0.5346
+    }
+   },
+   "decider_ms": 9937.327167019248,
+   "decider_server_ms": 9841.7,
+   "llm": {
+    "next_step": {
+     "label": "ALLOW_IF_AUTHORIZED",
+     "confidence": 1.0
+    },
+    "risk_severity": {
+     "label": "moderate",
+     "confidence": 1.0
+    },
+    "evidence_tool": {
+     "label": "none",
+     "confidence": 1.0
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 2285.533749964088,
+   "llm_cost": 0.0023304
+  },
+  {
+   "i": 12,
+   "expected": {
+    "next_step_audit": "FETCH_EVIDENCE",
+    "risk_severity": "moderate",
+    "evidence_tool": "GET_PROVENANCE",
+    "analyzer": "none"
+   },
+   "decider": {
+    "next_step_audit": {
+     "label": "FETCH_EVIDENCE",
+     "confidence": 0.3292
+    },
+    "risk_severity": {
+     "label": "high",
+     "confidence": 0.32
+    },
+    "evidence_tool": {
+     "label": "GET_RESOURCE_LABEL",
+     "confidence": 0.5211
+    },
+    "analyzer": {
+     "label": "SEMANTIC_DLP",
+     "confidence": 0.4212
+    }
+   },
+   "decider_ms": 6888.319792225957,
+   "decider_server_ms": 6772.9,
+   "llm": {
+    "next_step_audit": {
+     "label": "CREATE_REVIEW_CASE",
+     "confidence": 0.8
+    },
+    "risk_severity": {
+     "label": "high",
+     "confidence": 0.9
+    },
+    "evidence_tool": {
+     "label": "GET_PROVENANCE",
+     "confidence": 0.9
+    },
+    "analyzer": {
+     "label": "SEMANTIC_DLP",
+     "confidence": 0.8
+    }
+   },
+   "llm_ms": 2069.6620419621468,
+   "llm_cost": 0.0023024
+  },
+  {
+   "i": 13,
+   "expected": {
+    "next_step_audit": "RECORD_ONLY",
+    "risk_severity": "low",
+    "evidence_tool": "none",
+    "analyzer": "none"
+   },
+   "decider": {
+    "next_step_audit": {
+     "label": "RECORD_ONLY",
+     "confidence": 0.5543
+    },
+    "risk_severity": {
+     "label": "low",
+     "confidence": 0.3967
+    },
+    "evidence_tool": {
+     "label": "none",
+     "confidence": 0.4079
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 0.7318
+    }
+   },
+   "decider_ms": 6301.707667298615,
+   "decider_server_ms": 6199.3,
+   "llm": {
+    "next_step_audit": {
+     "label": "RECORD_ONLY",
+     "confidence": 1.0
+    },
+    "risk_severity": {
+     "label": "low",
+     "confidence": 1.0
+    },
+    "evidence_tool": {
+     "label": "none",
+     "confidence": 1.0
+    },
+    "analyzer": {
+     "label": "none",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 2136.7203751578927,
+   "llm_cost": 0.0022072
+  },
+  {
+   "i": 14,
+   "expected": {
+    "next_step": "REQUIRE_APPROVAL",
+    "risk_severity": "high",
+    "evidence_tool": "none",
+    "analyzer": "none"
+   },
+   "decider": {
+    "next_step": {
+     "label": "ESCALATE_SEMANTIC",
+     "confidence": 0.3113
+    },
+    "risk_severity": {
+     "label": "high",
+     "confidence": 0.3355
+    },
+    "evidence_tool": {
+     "label": "none",
+     "confidence": 0.5267
+    },
+    "analyzer": {
+     "label": "SEMANTIC_DLP",
+     "confidence": 0.3238
+    }
+   },
+   "decider_ms": 7107.233291957527,
+   "decider_server_ms": 7013.4,
+   "llm": {
+    "next_step": {
+     "label": "ESCALATE_SEMANTIC",
+     "confidence": 0.95
+    },
+    "risk_severity": {
+     "label": "critical",
+     "confidence": 0.95
+    },
+    "evidence_tool": {
+     "label": "none",
+     "confidence": 1.0
+    },
+    "analyzer": {
+     "label": "SEMANTIC_DLP",
+     "confidence": 0.95
+    }
+   },
+   "llm_ms": 2085.2996669709682,
+   "llm_cost": 0.0023288000000000002
+  }
+ ],
+ "summary": {
+  "decider": {
+   "accuracy": 0.6111,
+   "decisions": 54,
+   "per_question": {
+    "next_step": 0.3636,
+    "risk_severity": 0.6923,
+    "evidence_tool": 0.6923,
+    "analyzer": 0.6,
+    "next_step_audit": 1.0
+   },
+   "latency_p50_ms": 6824.2,
+   "latency_p95_ms": 9937.3,
+   "usd_per_1k_decisions": 0.035,
+   "confident_share": 0.0741,
+   "accuracy_when_confident": 1.0,
+   "sent_to_human_at_threshold": 50
+  },
+  "llm": {
+   "accuracy": 0.6111,
+   "decisions": 54,
+   "per_question": {
+    "next_step": 0.6364,
+    "risk_severity": 0.3846,
+    "evidence_tool": 1.0,
+    "analyzer": 0.4667,
+    "next_step_audit": 0.5
+   },
+   "latency_p50_ms": 2085.3,
+   "latency_p95_ms": 2655.5,
+   "usd_per_1k_decisions": 0.6003,
+   "confident_share": 1.0,
+   "accuracy_when_confident": 0.6111,
+   "sent_to_human_at_threshold": 0
+  },
+  "speedup_p50": 0.31
+ },
+ "threshold": 0.7,
+ "llm_model": "us.amazon.nova-pro-v1:0",
+ "llm_provider": "bedrock",
+ "llm_where": "Amazon Bedrock (us.amazon.nova-pro-v1:0)",
+ "decider_url": "https://da25tnxy06gjk.cloudfront.net",
+ "decider_mode": "ugmdu",
+ "ran_at": 1792822234.345388,
+ "split": "test"
+}

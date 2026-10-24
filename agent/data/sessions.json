@@ -1,0 +1,78 @@
+[
+ {"session_id": "S-01", "actor_id": "u-ana", "task": "Prepare the Q3 partner newsletter from approved marketing material.", "steps": [{"step": 1, "kind": "event", "event_id": "EVT-101"}]},
+ {"session_id": "S-02", "actor_id": "u-devi", "task": "Write test cases for the expense-report form.", "steps": [{"step": 1, "kind": "event", "event_id": "EVT-102"}]},
+ {"session_id": "S-03", "actor_id": "u-ben", "task": "Draft the board summary of Q3 results for the Finance Director.", "steps": [{"step": 1, "kind": "event", "event_id": "EVT-103"}]},
+ {"session_id": "S-04", "actor_id": "u-ben", "task": "Summarise Q3 for the finance team.", "steps": [
+  {"step": 1, "kind": "event", "event_id": "EVT-132", "observed_effect": "completed"},
+  {"step": 2, "kind": "derive", "artifact_id": "ART-35", "transformation": "paraphrase"},
+  {"step": 3, "kind": "event", "event_id": "EVT-133"}]},
+ {"session_id": "S-05", "actor_id": "u-ben", "task": "Send the Q3 forecast summary to our external financial advisers for the investor-day preparation.", "steps": [
+  {"step": 1, "kind": "read", "resource_id": "DOC-CONF-03"},
+  {"step": 2, "kind": "derive", "artifact_id": "ART-05", "transformation": "summary"},
+  {"step": 3, "kind": "event", "event_id": "EVT-105"}]},
+ {"session_id": "S-06", "actor_id": "u-ana", "task": "Prepare the Q3 partner newsletter from approved marketing material.", "steps": [
+  {"step": 1, "kind": "read", "resource_id": "DOC-INT-02"},
+  {"step": 2, "kind": "derive", "artifact_id": "ART-06", "transformation": "excerpt"},
+  {"step": 3, "kind": "event", "event_id": "EVT-106"}]},
+ {"session_id": "S-07", "actor_id": "u-ben", "task": "CFO request: share the Q3 capacity forecast with our new logistics vendor for capacity planning.", "steps": [
+  {"step": 1, "kind": "read", "resource_id": "DOC-CONF-03"},
+  {"step": 2, "kind": "derive", "artifact_id": "ART-07", "transformation": "summary"},
+  {"step": 3, "kind": "event", "event_id": "EVT-107"},
+  {"step": 4, "kind": "event", "event_id": "EVT-107R"}]},
+ {"session_id": "S-09", "actor_id": "u-ana", "task": "Prepare the Q3 partner newsletter from approved marketing material.", "steps": [{"step": 1, "kind": "event", "event_id": "EVT-109"}]},
+ {"session_id": "S-10", "actor_id": "u-ana", "task": "Prepare the Q3 partner newsletter from approved marketing material.", "steps": [{"step": 1, "kind": "event", "event_id": "EVT-110"}]},
+ {"session_id": "S-11", "actor_id": "u-eli", "task": "Summarise this week's support tickets for the team lead.", "steps": [
+  {"step": 1, "kind": "web_read", "resource_id": "WEB-08"},
+  {"step": 2, "kind": "read", "resource_id": "DOC-CONF-10"},
+  {"step": 3, "kind": "event", "event_id": "EVT-111"}]},
+ {"session_id": "S-13", "actor_id": "u-chen", "task": "Send the hiring-market note to our recruiting partner.", "steps": [
+  {"step": 1, "kind": "read", "resource_id": "DOC-PUB-14"},
+  {"step": 2, "kind": "untracked_input", "note": "pasted spreadsheet"},
+  {"step": 3, "kind": "derive", "artifact_id": "ART-13", "transformation": "summary"},
+  {"step": 4, "kind": "event", "event_id": "EVT-113"}]},
+ {"session_id": "S-14", "actor_id": "u-ana", "task": "Prepare the Q3 partner newsletter from approved marketing material.", "steps": [
+  {"step": 1, "kind": "read", "resource_id": "DOC-INT-02"},
+  {"step": 2, "kind": "untracked_input", "note": "pasted text"},
+  {"step": 3, "kind": "derive", "artifact_id": "ART-14", "transformation": "rewrite"},
+  {"step": 4, "kind": "event", "event_id": "EVT-114"}]},
+ {"session_id": "S-16", "actor_id": "u-ivan", "task": "Send the agreed joint-venture call recap to Partner Two's deal team.", "steps": [
+  {"step": 1, "kind": "read", "resource_id": "DOC-CONF-06"},
+  {"step": 2, "kind": "derive", "artifact_id": "ART-16", "transformation": "recap"},
+  {"step": 3, "kind": "event", "event_id": "EVT-116"}]},
+ {"session_id": "S-17", "actor_id": "u-chen", "task": "Prepare the annual compensation review pack.", "steps": [{"step": 1, "kind": "event", "event_id": "EVT-117"}]},
+ {"session_id": "S-18", "actor_id": "u-ana", "task": "Prepare the Q3 partner newsletter from approved marketing material.", "steps": [{"step": 1, "kind": "event", "event_id": "EVT-118"}]},
+ {"session_id": "S-19", "actor_id": "u-ben", "task": "Write the competitive-analysis brief for the sales team.", "steps": [{"step": 1, "kind": "event", "event_id": "EVT-119"}]},
+ {"session_id": "S-21", "actor_id": "u-devi", "task": "Clean up duplicate contacts in the CRM test data.", "steps": [
+  {"step": 1, "kind": "read", "resource_id": "DOC-CONF-10"},
+  {"step": 2, "kind": "event", "event_id": "AUD-201"}]},
+ {"session_id": "S-22", "actor_id": "u-chen", "task": "Share the salary-band summary with the recruiting partner.", "steps": [{"step": 1, "kind": "event", "event_id": "EVT-122"}]},
+ {"session_id": "S-23", "actor_id": "u-devi", "task": "Write the test plan for the mobile release.", "steps": [{"step": 1, "kind": "event", "event_id": "EVT-123"}]},
+ {"session_id": "S-24", "actor_id": "u-eli", "task": "Summarise this week's support tickets for the team lead.", "steps": [{"step": 1, "kind": "event", "event_id": "EVT-124"}]},
+ {"session_id": "S-25", "actor_id": "u-eli", "task": "Help marketing collect partner quotes for the Q3 newsletter.", "steps": [{"step": 1, "kind": "event", "event_id": "EVT-125"}]},
+ {"session_id": "S-26", "actor_id": "u-ben", "task": "CFO request: share the Q3 capacity forecast with our new logistics vendor for capacity planning.", "steps": [
+  {"step": 1, "kind": "read", "resource_id": "DOC-CONF-03"},
+  {"step": 2, "kind": "derive", "artifact_id": "ART-26", "transformation": "summary"},
+  {"step": 3, "kind": "event", "event_id": "EVT-126"},
+  {"step": 4, "kind": "event", "event_id": "EVT-126R"},
+  {"step": 5, "kind": "event", "event_id": "EVT-126X"}]},
+ {"session_id": "S-27", "actor_id": "u-eli", "task": "Answer Partner Two's integration questions about webhook retries.", "steps": [
+  {"step": 1, "kind": "web_read", "resource_id": "WEB-12"},
+  {"step": 2, "kind": "read", "resource_id": "DOC-INT-09"},
+  {"step": 3, "kind": "derive", "artifact_id": "ART-27", "transformation": "reply draft"},
+  {"step": 4, "kind": "event", "event_id": "EVT-127"}]},
+ {"session_id": "S-28", "actor_id": "u-ana", "task": "Prepare the Q3 partner newsletter from approved marketing material.", "steps": [{"step": 1, "kind": "event", "event_id": "EVT-128"}]},
+ {"session_id": "S-29", "actor_id": "u-ana", "task": "Send the partner pricing note to Partner Three's sales team.", "steps": [
+  {"step": 1, "kind": "read", "resource_id": "DOC-PUB-13"},
+  {"step": 2, "kind": "untracked_input", "note": "pasted text"},
+  {"step": 3, "kind": "derive", "artifact_id": "ART-29", "transformation": "rewrite"},
+  {"step": 4, "kind": "event", "event_id": "EVT-129"}]},
+ {"session_id": "S-30", "actor_id": null, "task": "Send the partner FAQ to the newsletter partner.", "steps": [{"step": 1, "kind": "event", "event_id": "EVT-130"}]},
+ {"session_id": "S-31", "actor_id": "u-ana", "task": "Prepare the Q3 partner newsletter from approved marketing material.", "steps": [{"step": 1, "kind": "event", "event_id": "EVT-131"}]},
+ {"session_id": "S-34", "actor_id": "u-eli", "task": "Support director request: hand over the open enterprise escalations to our new support-outsourcing vendor.", "steps": [
+  {"step": 1, "kind": "read", "resource_id": "DOC-CONF-10"},
+  {"step": 2, "kind": "derive", "artifact_id": "ART-34", "transformation": "summary"},
+  {"step": 3, "kind": "event", "event_id": "EVT-134"}]},
+ {"session_id": "S-36", "actor_id": "u-gus", "task": "Share the partner programme summary with Partner Two's deal team.", "steps": [{"step": 1, "kind": "event", "event_id": "AUD-202"}]},
+ {"session_id": "S-37", "actor_id": "u-ana", "task": "Prepare the Q3 partner newsletter from approved marketing material.", "steps": [{"step": 1, "kind": "event", "event_id": "AUD-203"}]},
+ {"session_id": "S-41", "actor_id": "u-ana", "task": "Prepare the Q3 partner newsletter from approved marketing material.", "steps": [{"step": 1, "kind": "event", "event_id": "FRM-301"}]}
+]

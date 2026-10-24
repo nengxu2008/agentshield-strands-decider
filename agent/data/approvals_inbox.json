@@ -1,0 +1,16 @@
+[
+ {"submission_id": "APR-1", "kind": "EMPLOYEE_CONFIRMATION", "for_event": "EVT-126", "submitted_by": "u-ben", "sign_with": "u-ben", "issued_minutes_ago": 2,
+  "message": "I confirm I want to send the capacity forecast to the logistics vendor."},
+ {"submission_id": "APR-2", "kind": "DATA_OWNER_AUTHORIZATION", "for_event": "EVT-126", "submitted_by": "u-farah", "sign_with": "u-farah", "issued_minutes_ago": 2,
+  "message": "Approved once for capacity planning with the new logistics vendor."},
+ {"submission_id": "APR-3", "kind": "DATA_OWNER_AUTHORIZATION", "for_event": "EVT-126", "submitted_by": "u-gus", "sign_with": "u-gus", "issued_minutes_ago": 2,
+  "message": "Approved (by someone who does not own the forecast)."},
+ {"submission_id": "APR-4", "kind": "DATA_OWNER_AUTHORIZATION", "for_event": "EVT-126", "submitted_by": "u-farah", "sign_with": "u-farah", "issued_minutes_ago": 2, "tamper": true,
+  "message": "Approved (signature altered in transit)."},
+ {"submission_id": "APR-5", "kind": "DATA_OWNER_AUTHORIZATION", "for_event": "EVT-126", "submitted_by": "u-farah", "sign_with": "u-farah", "issued_minutes_ago": 40,
+  "message": "Approved (but this grant has expired)."},
+ {"submission_id": "APR-6", "kind": "EMPLOYEE_CONFIRMATION", "for_event": "EVT-107", "submitted_by": "u-ben", "sign_with": "u-ben", "issued_minutes_ago": 1,
+  "message": "Yes, I really want to send the capacity forecast to the logistics vendor."},
+ {"submission_id": "APR-7", "kind": "DATA_OWNER_AUTHORIZATION", "for_event": "EVT-107", "submitted_by": "u-farah", "sign_with": "u-farah", "issued_minutes_ago": 1,
+  "message": "Approved once: the logistics vendor may receive the Q4 capacity forecast for planning."}
+]

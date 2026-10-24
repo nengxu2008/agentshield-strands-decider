@@ -1,0 +1,20 @@
+[
+ {"resource_id": "DOC-PUB-01", "title": "Brand guide", "label": "PUBLIC", "owner_id": "u-lee", "kind": "document"},
+ {"resource_id": "DOC-INT-02", "title": "Partner FAQ", "label": "INTERNAL", "owner_id": "u-lee", "kind": "document"},
+ {"resource_id": "DOC-CONF-03", "title": "Q3 revenue forecast", "label": "CONFIDENTIAL", "owner_id": "u-farah", "kind": "document"},
+ {"resource_id": "DOC-CONF-04", "title": "Product roadmap", "label": "CONFIDENTIAL", "owner_id": "u-gus", "kind": "document"},
+ {"resource_id": "DOC-RES-05", "title": "Payroll register", "label": "RESTRICTED", "owner_id": "u-hana", "kind": "document"},
+ {"resource_id": "DOC-CONF-06", "title": "Board minutes", "label": "CONFIDENTIAL", "owner_id": "u-ivan", "kind": "document",
+  "egress_mandatory_analyzers": ["SENSITIVE_DERIVATION_REVIEW"]},
+ {"resource_id": "DOC-INT-07", "title": "Support ticket export", "label": "INTERNAL", "owner_id": "u-kai", "kind": "document"},
+ {"resource_id": "DOC-INT-09", "title": "Engineering wiki: integration runbook", "label": "INTERNAL", "owner_id": "u-gus", "kind": "document"},
+ {"resource_id": "DOC-CONF-10", "title": "Customer list", "label": "CONFIDENTIAL", "owner_id": "u-kai", "kind": "dataset", "records": 4812},
+ {"resource_id": "DOC-INT-11", "title": "Partner FAQ v2 (draft)", "label": "INTERNAL", "owner_id": "u-lee", "kind": "document"},
+ {"resource_id": "DOC-INT-12", "title": "Partner FAQ v3", "label": "INTERNAL", "owner_id": "u-lee", "kind": "document"},
+ {"resource_id": "DOC-PUB-13", "title": "Press kit", "label": "PUBLIC", "owner_id": "u-lee", "kind": "document", "optional_metadata": {"project_tag": null}},
+ {"resource_id": "DOC-PUB-14", "title": "Public salary survey 2026", "label": "PUBLIC", "owner_id": "u-hana", "kind": "document"},
+ {"resource_id": "DOC-INT-15", "title": "Partner note (draft)", "label": "INTERNAL", "owner_id": "u-lee", "kind": "document"},
+ {"resource_id": "DOC-INT-16", "title": "Partner update", "label": "INTERNAL", "owner_id": "u-lee", "kind": "document"},
+ {"resource_id": "WEB-08", "title": "Web page: support forum thread", "label": "UNTRUSTED_SOURCE", "owner_id": null, "kind": "web_page"},
+ {"resource_id": "WEB-12", "title": "Web page: Partner Two integration notes", "label": "UNTRUSTED_SOURCE", "owner_id": null, "kind": "web_page"}
+]

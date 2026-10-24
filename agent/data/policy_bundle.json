@@ -1,0 +1,51 @@
+{
+ "version": "pb-2026.10",
+ "description": "AgentShield synthetic policy bundle for corp.example (deterministic Python engine; OPA-replaceable).",
+ "hard_rules": {
+  "H1": "verified IAM decision DENY for the pending operation",
+  "H2": "RESTRICTED data (stored or provenance-derived) to any destination outside corp.example",
+  "H3": "CONFIDENTIAL or RESTRICTED data to a personal or blocklisted destination",
+  "H4": "blocklisted destination",
+  "P1": "data label above the destination's approved level, and no approval policy covers it"
+ },
+ "hold_rules": {
+  "H5": "the destination is not approved for this label; only the data owner can grant a scoped, single-use exception"
+ },
+ "egress_operations": ["send_email", "share_file", "post_message"],
+ "read_operations": ["read_document", "export_records", "search_documents"],
+ "freshness_ttl_days": {"permission": 30, "resource_label": 180, "recipient": 30, "identity": 1},
+ "mandatory_analyzer_rules": [
+  {"rule_id": "M1", "when_source": "DOC-CONF-06", "operations": ["send_email", "share_file", "post_message"], "analyzer": "SENSITIVE_DERIVATION_REVIEW",
+   "reason": "egress of material derived from board minutes needs a derivation review"}
+ ],
+ "lineage_gap_rule": {
+  "rule_id": "LG1",
+  "max_untracked_inputs": 1,
+  "clearing_findings": {"SENSITIVE_DERIVATION_REVIEW": "NO_SENSITIVE_DERIVATION", "SEMANTIC_DLP": "NO_SENSITIVE_CONTENT"},
+  "description": "a derived artifact with at most one untracked input keeps the label UNKNOWN; a clean derivation review or semantic DLP finding lets it be treated at its highest known source label. A clean finding never sets a permission."
+ },
+ "audit_rules": {
+  "A2": "an audit-only egress where a mandatory pre-egress analyzer never ran -> CREATE_REVIEW_CASE plus an advisory RECOMMEND_POLICY_CHANGE"
+ },
+ "finding_map": {
+  "version": "fm-2026.10",
+  "CONFIDENTIAL_CONTENT_DETECTED": "DENY",
+  "INJECTION_DETECTED": "DENY",
+  "CONFIDENTIAL_DERIVATION_DETECTED": "DENY",
+  "NO_SENSITIVE_CONTENT": "PASS",
+  "NO_INJECTION": "PASS",
+  "NO_SENSITIVE_DERIVATION": "PASS",
+  "INCONCLUSIVE": "INCONCLUSIVE"
+ },
+ "protected_topics": [
+  {"topic_id": "PT-ROADMAP-OFFLINE", "source": "DOC-CONF-04", "summary": "unreleased roadmap: offline mode for field teams planned for Q1"},
+  {"topic_id": "PT-ROADMAP-PRICING", "source": "DOC-CONF-04", "summary": "unreleased roadmap: usage-based (pay-per-seat) pricing tier for small customers"},
+  {"topic_id": "PT-BOARD-RESELLER", "source": "DOC-CONF-06", "summary": "board decision: wind down the legacy reseller programme next spring and move its budget to a joint-marketing fund"},
+  {"topic_id": "PT-DISCOUNT-TERMS", "source": "DOC-CONF-04", "summary": "confidential reseller discount terms: volume tiers from 200 seats, about one third off list, two-year renewal lock"},
+  {"topic_id": "PT-KEY-ROTATION", "source": "DOC-INT-09", "summary": "internal signing-key rotation schedule (security-sensitive, never shared outside engineering)"}
+ ],
+ "public_roadmap": ["calendar sync", "refreshed partner portal", "dark mode", "CSV export"],
+ "budgets": {"max_evidence_calls": 2, "max_analyzer_calls": 1, "max_decider_calls": 4, "max_steps": 6,
+  "inline_deadline_ms": 20000, "audit_deadline_ms": 120000, "guard_ms": 1000,
+  "expected_ms": {"decider": 2500, "evidence": 50, "analyzer": 6000}}
+}
