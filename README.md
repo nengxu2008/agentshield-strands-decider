@@ -5,7 +5,7 @@
 An agent on AWS that hands one decision to **Strands Decider 2B** and the conversation to **Amazon Bedrock**. Decision pattern: `#tool-selection`. Tags: `#strands-decider-2b` `#tool-selection`.
 
 - Video: https://youtu.be/tGztQFYy4Eg
-- Article: (add the AWS Builder Center link)
+- Article: https://builder.aws.com/project/3Kn0o7ft6nX6fuIWpvgNMsiD0rZ/agentshield-a-strands-decider-first-pass-gatekeeper-that-routes-security-checks-for-third-party-ai-agents
 - Deployed: Amazon Bedrock AgentCore Runtime, us-east-1
 
 ## The project
