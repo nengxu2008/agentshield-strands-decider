@@ -4,7 +4,7 @@
 
 An agent on AWS that hands one decision to **Strands Decider 2B** and the conversation to **Amazon Bedrock**. Decision pattern: `#tool-selection`. Tags: `#strands-decider-2b` `#tool-selection`.
 
-- Video: (add the YouTube/Vimeo link)
+- Video: https://youtu.be/tGztQFYy4Eg
 - Article: (add the AWS Builder Center link)
 - Deployed: Amazon Bedrock AgentCore Runtime, us-east-1
 
